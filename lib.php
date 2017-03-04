@@ -30,7 +30,6 @@ class View{
         <nav>
             <ul>
                 <li><a href='index.php'><span class='icon-home'></span>Inicio</a></li>
-                <li><a href='bebidas.php'><span class='icon-glass'></span>Bebidas</a></li>
                 <li><a href='contacto.php'><span class='icon-bubbles3'></span>Contacto</a></li>";
 
         if(!isset($_SESSION["user"])){
@@ -58,34 +57,6 @@ class View{
             </div>
         </div>
     </div>";
-    }
-
-    public static function bebidas($res){
-        if($res){
-            echo '<div id="content">
-                    <div id="main">
-                        <h2>Listado de bebidas</h2>
-                        <img src="imagenes/img03.png" alt="bebidas" />';
-            $res->setFetchMode(PDO::FETCH_NAMED);
-            $first=true;
-            foreach($res as $game){
-                if($first){
-                    echo "<table><tr>";
-                    foreach($game as $field=>$value){
-                        echo "<th>$field</th>";
-                    }
-                    $first = false;
-                    echo "</tr>";
-                }
-                echo "<tr>";
-                foreach($game as $value){
-                    echo "<td><a href=\"bebidas.php?id=".$game['id']."\">$value</a></td>";
-                }
-                echo "</tr>";
-            }
-            echo '</table></div>
-                </div>';
-        }
     }
 
     public static function contacto(){
@@ -138,7 +109,7 @@ class View{
                             <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gStock\" class=\"boton\">Gestionar Stock</a></td>
                         <tr>
                         <tr>
-                            <td colspan='2'> <a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Gestionar Pedidos</a></td>
+                            <td colspan='2'> <a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Listar Pedidos</a></td>
                         <tr>
                     </table>
                 </div>
@@ -272,9 +243,9 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<table><tr><tr>
-                                 <td colspan=\"6\" class=\"right\"><a href=\"bebidas.php?tipo=1&accion=crear\"><h1> Agregar Nueva bebida <span class='icon-user-plus'></span></h1></a></td>
-                </tr>";
+                    echo "<table><tr>
+                                 <td colspan=\"6\" class=\"right\"><a href=\"bebidas.php?tipo=1&accion=crear\"><h1> Agregar Nueva bebida <span class='icon-glass2'></span></h1></a></td>
+                </tr><tr>";
                     foreach($game as $field=>$value){
                         echo "<th>$field</th>";
                     }
@@ -284,7 +255,7 @@ class View{
                 echo "<tr>";
                 foreach($game as $value){
                     $id = $game['id'];
-                    echo "<td><a href=\"bebidas.php?id=".$id."\">$value</a></td>";
+                    echo "<td>$value</td>";
                 }
 
                 echo "  <td><a href=\"bebidas.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></td>
@@ -355,8 +326,33 @@ class View{
                 </div>";
     }
 
-    public static function gestionPedidos(){
-        echo ' ';
+    public static function gestionPedidos($res){
+        if($res){
+            echo '<div id="content">
+                    <div id="main">';
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            foreach($res as $game){
+                if($first){
+                    echo "<table><tr>";
+                    foreach($game as $field=>$value){
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "<th></th></tr>";
+                }
+                echo "<tr>";
+                foreach($game as $value){
+                    $id = $game['id'];
+                    echo "<td>$value</td>";
+                }
+
+                echo "  <td><a href=\"pedidos.php?tipo=1&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></td>
+                    </tr>";
+            }
+            echo '</table></div>
+                </div>';
+        }
     }
 
     public static function end(){

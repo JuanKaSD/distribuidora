@@ -22,7 +22,8 @@ if(isset($_GET['tipo']) && $_GET['tipo'] == $_SESSION["tipo"]){
                         View::gestionStock($res);
                         break;
                     case "gPedidos": //gestionar pedidos
-                        View::gestionPedidos();
+                        $res = DB::execute_sql('SELECT * FROM pedidos');
+                        View::gestionPedidos($res);
                         break;
                     default :// menu principal
                         View::gestionAdmin();
