@@ -183,15 +183,19 @@ class View{
     }
 
     public static function formularioUsuarios($res=null){
+        echo "<div id=\"content\">
+                    <div id=\"main\">
+                        <form action=\"usuarios.php\" method=\"post\" name=\"crear\">
+                            <table>
+                                <tr>";
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
             foreach($res as $campo){
-                echo "<div id=\"content\">
-                        <div id=\"main\">
-                            <form action=\"usuarios.php\" method=\"post\" name=\"crear\">
-                                <table>
-                                    <tr>
-                                        <td colspan='3' class='right'>id: ".$campo['id']."<input type='hidden' name='id' value='".$campo['id']."' /><input type='hidden' name='tipo' value='".$_GET['tipo']."' /><input type='hidden' name='accion' value='".$_GET['accion']."' /></td>
+                echo "                 <td colspan='3' class='right'>id: ".$campo['id']."
+                                            <input type='hidden' name='id' value='".$campo['id']."' />
+                                            <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
+                                            <input type='hidden' name='accion' value='".$_GET['accion']."' />
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Nombre</td>
@@ -218,20 +222,13 @@ class View{
                                         <td colspan='2'><input type='password' name='clave' value=\"\" /> deje vacia para mantener la anterior.</td>
                                     </tr>
                                     <tr>
-                                        <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a></td>
-                                    </tr>
-                                </table>
-                            </form>
-                        </div>
-                    </div>";
+                                        <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
             }
         }else{
-            echo "<div id=\"content\">
-                    <div id=\"main\">
-                        <form action=\"usuarios.php\" method=\"post\" name=\"crear\">
-                            <table>
-                                <tr>
-                                    <td colspan='3' class='right'>id <input type='hidden' name='tipo' value='".$_GET['tipo']."' /><input type='hidden' name='accion' value='".$_GET['accion']."' /></td>
+            echo "                      <td colspan='3' class='right'>id
+                                            <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
+                                            <input type='hidden' name='accion' value='".$_GET['accion']."' />
+                                        </td>
                                 </tr>
                                 <tr>
                                     <td>Nombre</td>
@@ -255,13 +252,14 @@ class View{
                                     <td colspan='2'><input type='password' name='clave' /></td>
                                 </tr>
                                 <tr>
-                                    <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">Agregar</a></td>
+                                    <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">Agregar</a>";
+        }
+        echo "                      </td>
                                 </tr>
                             </table>
                         </form>
                     </div>
                 </div>";
-        }
     }
 
     public static function gestionStock($res){
