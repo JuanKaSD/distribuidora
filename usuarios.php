@@ -5,7 +5,7 @@ User::session_start();
 View::start('Distribuidora');
 View::navigation();
 
-if(!isset($_SESSION["user"])){
+if(!isset($_SESSION["user"]) && $_SESSION["user"]==1){
     header("location:index.php");
 }
 if(isset($_GET['accion']) &&  $_GET['tipo'] == $_SESSION["tipo"]){

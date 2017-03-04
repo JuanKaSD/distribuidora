@@ -37,6 +37,6 @@ if(isset($_GET['tipo']) && $_GET['tipo'] == $_SESSION["tipo"]){
             break;
     }
 }else{
-    echo "un intruso!!!! llamando a la poli... no te vallas aveces tardan en llegar... jejejejeje";
+    echo "<div id=\"error\"><h2>un intruso!!!! llamando a la poli... no te vallas aveces tardan en llegar... jejejejeje</h2></div>";
 }
 View::end();

@@ -27,6 +27,8 @@ class Mod{
     }
 
     public static function iniDb(){                             //función para inicar la base de datos
+        if(!fopen("datos.db","r")){  //compruebo que la base de datos ya fue creada para meter los datos solo la primera vez
+            //insertando valores por defecto
         //conectando con base de datos
         $db = Mod::conectar();
         //borrando tablas si ya han estado creadas
@@ -89,8 +91,7 @@ class Mod{
                 );");
 
 
-        if(!fopen("datos.db","r")){  //compruebo que la base de datos ya fue creada para meter los datos solo la primera vez
-            //insertando valores por defecto
+
             $db->query("INSERT INTO [usuarios] ([usuario], [clave], [nombre], [tipo]) VALUES ('adm', 'c4ca4238a0b923820dcc509a6f75849b', 'El Manda Más', 1);");
 
             $db->query("INSERT INTO [usuarios] ([usuario], [clave], [nombre], [tipo], [poblacion], [direccion]) VALUES ('cli1', 'c81e728d9d4c2f636f067f89cc14862c', 'Bar Vaso Obrero', 2, 'Arucas', 'Calle Mayor Nº 33');");

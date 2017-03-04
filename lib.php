@@ -79,7 +79,7 @@ class View{
                 }
                 echo "<tr>";
                 foreach($game as $value){
-                    echo "<td><a href=\"producto.php?id=".$game['id']."\">$value</a></td>";
+                    echo "<td><a href=\"bebidas.php?id=".$game['id']."\">$value</a></td>";
                 }
                 echo "</tr>";
             }
