@@ -250,7 +250,7 @@ class View{
                 foreach($game as $value){
                     if(!($game['clave']==$value)){
                         $id = $game['id'];
-                        echo "<td><a href=\"producto.php?id=".$id."\">$value</a></td>";
+                        echo "<td>$value</td>";
                     }
                 }
 
