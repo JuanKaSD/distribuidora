@@ -1,0 +1,187 @@
+<?php
+class View{
+    public static function  start($title){
+        $html = "
+        <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+        <html xmlns=\"http://www.w3.org/1999/xhtml\">
+
+        <head>
+            <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
+            <title>$title</title>
+            <link href=\"estilo.css\" rel=\"stylesheet\" type=\"text/css\" />
+            <link rel=\"stylesheet\" type=\"text/css\" href=\"fuentes.css\" media=\"all\">
+        </head>
+
+        <body>
+            <div id=\"logo\">
+                <a href=\"index.php\"><img src=\"imagenes/img01.jpg\" alt=\"logo\" /></a>
+            </div>";
+
+        User::session_start();
+        echo $html;
+    }
+    public static function navigation(){
+        echo "
+        <div class='menu_bar'>
+            <a href='#' class='bt-menu'><span class='icon-menu'></span>Menu</a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href='index.php'><span class='icon-home'></span>Inicio</a></li>
+                <li><a href='bebidas.php'><span class='icon-glass'></span>Bebidas</a></li>
+                <li><a href='contacto.php'><span class='icon-bubbles4'></span>Contacto</a></li>";
+
+        if(!isset($_SESSION["user"])){
+            echo "<li><a href='login.php'><span class='icon-key2'></span>Acceder</a></li>";
+        }else{
+
+            echo "<li><a href='gestionar.php?tipo=" . $_SESSION["tipo"] . "'><span class='icon-cog'></span>Gestionar</a></li>";
+            echo "<li><a href='logout.php'><span class='icon-key2'></span>Salir</a></li>";
+        }
+
+        echo "    </ul>
+        </nav>";
+    }
+
+    public static function presentacion(){
+        echo "<div id=\"content\">
+        <div id=\"main\">
+            <p>DBBR es una empresa especializada en venta de bebidas desde hace más de 10 a&ntilde;os. Nos encargamos del reparto en oficinas, locales, bares, restaurantes, hoteles, vending y SPAs.
+                <br /> Adem&aacute;s, somos proveedores de caf&eacute; Araibo, marca de la cual somos distribuidores oficiales en la Comunidad de canarias. Ofrecemos caf&eacute; en c&aacute;psula con todos sus complementos. A su vez, y para ofrecer un servicio m&aacute;s completo, tambi&eacute;n distribuimos vasos de pl&aacute;stico de un s&oacute;lo uso y vasos de pl&aacute;stico para hoteles embolsados unitariamente. Todos nuestros productos son de alta calidad, lo que nos permite garantizar un &oacute;ptimo servicio a nuestros clientes.</p>
+            <h2>Nuestras oficinas</h2>
+            <br/>
+            <div id=\"sede\">
+                <img src=\"imagenes/sede.jpg\" alt=\"sede\" /> <br />
+                <img src=\"imagenes/almacen.jpg\" alt=\"almacen\" />
+            </div>
+        </div>
+    </div>";
+    }
+    public static function bebidas($res){
+        if($res){
+            echo '<div id="content">
+                    <div id="main">
+                        <h2>Listado de bebidas</h2>
+                        <img src="imagenes/img03.png" alt="bebidas" />';
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            foreach($res as $game){
+                if($first){
+                    echo "<table><tr>";
+                    foreach($game as $field=>$value){
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "</tr>";
+                }
+                echo "<tr>";
+                foreach($game as $value){
+                    echo "<td><a href=\"producto.php?id=".$game['id']."\">$value</a></td>";
+                }
+                echo "</tr>";
+            }
+            echo '</table></div>
+                </div>';
+        }
+    }
+    public static function contacto(){
+        echo '<div id="content">
+			<div id="main">
+				<h2>DBBR. Distribuci&oacute;n de Bebidas a Bares y Restaurantes.</h2>
+				<p>Calle artenara, 33. 35017 Las Palmas De Gran Canaria. Las Palmas. </p>
+
+				<p>	[Tel&eacute;fono] 928 000 000 - 928 000 001<br/>
+					Horario: Lunes-sabado: 13:30 - 17:30 / 20:30 - 23:30<br/>
+					<img src="imagenes/mapa.jpg" alt="mapa" id="mapa"/>
+				</p>
+			</div>
+		</div>';
+    }
+    public static function login(){
+        echo "
+        <div id=\"content\">
+            <div id=\"main\">
+                <div id=\"login\">
+                    <table>
+                        <form action=\"\" method=\"post\" name=\"contacto\">
+                            <tr>
+                                <td> Usuario </td>
+                                <td> <input name=\"user\" type=\"text\"> </td>
+                            </tr>
+                            <tr>
+                                <td> Contraseña </td>
+                                <td><input name=\"password\" type=\"password\"></td>
+                            <tr>
+                            <tr>
+                                <td colspan='2'> <a href\"\" onclick=\"contacto.submit()\" class=\"boton\">Ingresar</a></td>
+                            <tr>
+                        </form>
+                    </table>
+                </div>
+            </div>
+        </div>";
+    }
+
+    public static function gestionAdmin(){
+        echo "
+        <div id=\"content\">
+            <div id=\"main\">
+                <div id=\"login\">
+                    <table>
+                        <tr>
+                            <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gUsuarios\"  class=\"boton\">Gestionar Usuarios</a></td>
+                            <td><a href\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gStock\" class=\"boton\">Gestionar Stock</a></td>
+                        <tr>
+                        <tr>
+                            <td colspan='2'> <a href\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Gestionar Pedidos</a></td>
+                        <tr>
+                    </table>
+                </div>
+            </div>
+        </div>";
+    }
+    public static function gestionUsuarios($res){
+        if($res){
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            foreach($res as $game){
+                if($first){
+                    echo "<div id=\"content\">
+                            <div id=\"main\"><table><tr>
+                                 <td colspan=\"9\" class=\"right\"> Agregar Nuevo Usuario <span class='icon-plus'></span></td>
+                </tr>
+                <tr>";
+                    foreach($game as $field=>$value){
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "<th></th><th></th></tr>";
+                }
+                echo "<tr>";
+                foreach($game as $value){
+                    $id = $game['id'];
+                    echo "<td><a href=\"producto.php?id=".$id."\">$value</a></td>";
+                }
+
+                echo "  <td><a href=\"paso.php?tipo=2&id_usuario=".$id."\"><span class='icon-pencil'></span></a></td>
+                        <td><a href=\"paso.php?tipo=1&id_usuario=".$id."\"><span class='icon-bin'></span></a></td>
+                    </tr>";
+            }
+            echo '</table></div>
+                </div>';
+        }
+
+    }
+    public static function gestionStock(){
+        echo ' ';
+    }
+    public static function gestionPedidos(){
+        echo ' ';
+    }
+    public static function end(){
+        echo '</body>
+</html>';
+    }
+}
+
