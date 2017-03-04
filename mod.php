@@ -26,6 +26,15 @@ class Mod{
        Mod::conectar()->query("INSERT INTO [usuarios] ([usuario], [clave], [nombre], [tipo], [poblacion], [direccion]) VALUES ('".$datos['usuario']."', '".md5($datos['clave'])."', '".$datos['nombre']."', '".$datos['tipo2']."', '".$datos['poblacion']."', '".$datos['direccion']."');");
     }
 
+    public static function editarBebida($datos){
+        $res = Mod::conectar()->prepare("UPDATE bebidas SET marca=?, stock=?, PVP=? WHERE id=?");
+        $res->execute(array($datos['marca'], $datos['stock'], $datos['PVP'], $datos['id']));
+    }
+
+    public static function crearBebida($datos){
+       Mod::conectar()->query("INSERT INTO [bebidas] ([marca], [stock], [PVP]) VALUES ('".$datos['marca']."', '".$datos['stock']."', '".$datos['PVP']."');");
+    }
+
     public static function iniDb(){                             //función para inicar la base de datos
         if(!fopen("datos.db","r")){  //compruebo que la base de datos ya fue creada para meter los datos solo la primera vez
             //insertando valores por defecto

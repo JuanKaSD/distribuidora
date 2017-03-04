@@ -135,15 +135,51 @@ class View{
                     <table>
                         <tr>
                             <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gUsuarios\"  class=\"boton\">Gestionar Usuarios</a></td>
-                            <td><a href\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gStock\" class=\"boton\">Gestionar Stock</a></td>
+                            <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gStock\" class=\"boton\">Gestionar Stock</a></td>
                         <tr>
                         <tr>
-                            <td colspan='2'> <a href\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Gestionar Pedidos</a></td>
+                            <td colspan='2'> <a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Gestionar Pedidos</a></td>
                         <tr>
                     </table>
                 </div>
             </div>
         </div>";
+    }
+
+    public static function gestionUsuarios($res){
+        if($res){
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            foreach($res as $game){
+                if($first){
+                    echo "<div id=\"content\">
+                            <div id=\"main\"><table><tr>
+                                 <td colspan=\"8\" class=\"right\"><a href=\"usuarios.php?tipo=1&accion=crear\"><h1> Agregar Nuevo Usuario <span class='icon-user-plus'></span></h1></a></td>
+                </tr>
+                <tr>";
+                    foreach($game as $field=>$value){
+                        if(!($field=="clave"))
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "<th></th><th></th></tr>";
+                }
+                echo "<tr>";
+                foreach($game as $value){
+                    if(!($game['clave']==$value)){
+                        $id = $game['id'];
+                        echo "<td>$value</td>";
+                    }
+                }
+
+                echo "  <td><a href=\"usuarios.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></td>
+                        <td><a href=\"usuarios.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></td>
+                    </tr>";
+            }
+            echo '</table></div>
+                </div>';
+        }
+
     }
 
     public static function formularioUsuarios($res=null){
@@ -228,19 +264,20 @@ class View{
         }
     }
 
-    public static function gestionUsuarios($res){
+    public static function gestionStock($res){
         if($res){
+            echo '<div id="content">
+                    <div id="main">
+                        <h2>Listado de bebidas</h2>
+                        <img src="imagenes/img03.png" alt="bebidas" />';
             $res->setFetchMode(PDO::FETCH_NAMED);
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<div id=\"content\">
-                            <div id=\"main\"><table><tr>
-                                 <td colspan=\"8\" class=\"right\"><a href=\"usuarios.php?tipo=1&accion=crear\"><h1> Agregar Nuevo Usuario <span class='icon-user-plus'></span></h1></a></td>
-                </tr>
-                <tr>";
+                    echo "<table><tr><tr>
+                                 <td colspan=\"6\" class=\"right\"><a href=\"bebidas.php?tipo=1&accion=crear\"><h1> Agregar Nueva bebida <span class='icon-user-plus'></span></h1></a></td>
+                </tr>";
                     foreach($game as $field=>$value){
-                        if(!($field=="clave"))
                         echo "<th>$field</th>";
                     }
                     $first = false;
@@ -248,24 +285,76 @@ class View{
                 }
                 echo "<tr>";
                 foreach($game as $value){
-                    if(!($game['clave']==$value)){
-                        $id = $game['id'];
-                        echo "<td>$value</td>";
-                    }
+                    $id = $game['id'];
+                    echo "<td><a href=\"bebidas.php?id=".$id."\">$value</a></td>";
                 }
 
-                echo "  <td><a href=\"usuarios.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></td>
-                        <td><a href=\"usuarios.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></td>
+                echo "  <td><a href=\"bebidas.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></td>
+                        <td><a href=\"bebidas.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></td>
                     </tr>";
             }
             echo '</table></div>
                 </div>';
         }
-
     }
 
-    public static function gestionStock(){
-        echo ' ';
+    public static function formularioBebidas($res=null){
+        echo "<div id=\"content\">
+                    <div id=\"main\">
+                        <form action=\"bebidas.php\" method=\"post\" name=\"crear\">
+                            <table>
+                                <tr>";
+        if($res){
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            foreach($res as $campo){
+                echo "                  <td colspan='2' class='right'>id: ".$campo['id']."
+                                            <input type='hidden' name='id' value='".$campo['id']."' />
+                                            <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
+                                            <input type='hidden' name='accion' value='".$_GET['accion']."' />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marca</td>
+                                        <td><input type='text' name='marca' value=\"".$campo['marca']."\"/> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stock</td>
+                                        <td><input type='text' name='stock' value=\"".$campo['stock']."\" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>P.V.P</td>
+                                        <td><input type='text' name='PVP' value=\"".$campo['PVP']."\" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan='2'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
+            }
+        }else{
+            echo "                  <td colspan='2' class='right'>id:
+                                            <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
+                                            <input type='hidden' name='accion' value='".$_GET['accion']."' />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marca</td>
+                                        <td><input type='text' name='marca' /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stock</td>
+                                        <td><input type='text' name='stock' /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>P.V.P</td>
+                                        <td><input type='text' name='PVP' /></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan='2'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">agregar</a>";
+        }
+        echo "                      </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>";
     }
 
     public static function gestionPedidos(){

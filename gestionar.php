@@ -17,10 +17,11 @@ if(isset($_GET['tipo']) && $_GET['tipo'] == $_SESSION["tipo"]){
                         $res = DB::execute_sql('SELECT * FROM usuarios');
                         View::gestionUsuarios($res);
                         break;
-                    case "gStock": //cliente
-                        View::gestionStock();
+                    case "gStock": //getionar stock
+                        $res = DB::execute_sql('SELECT * FROM bebidas');
+                        View::gestionStock($res);
                         break;
-                    case "gPedidos": //repartidor
+                    case "gPedidos": //gestionar pedidos
                         View::gestionPedidos();
                         break;
                     default :// menu principal
