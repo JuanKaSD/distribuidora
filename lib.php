@@ -30,7 +30,7 @@ class View{
             <ul>
                 <li><a href='index.php'><span class='icon-home'></span>Inicio</a></li>
                 <li><a href='bebidas.php'><span class='icon-glass'></span>Bebidas</a></li>
-                <li><a href='contacto.php'><span class='icon-bubbles4'></span>Contacto</a></li>";
+                <li><a href='contacto.php'><span class='icon-bubbles3'></span>Contacto</a></li>";
 
         if(!isset($_SESSION["user"])){
             echo "<li><a href='login.php'><span class='icon-key2'></span>Acceder</a></li>";
@@ -104,7 +104,7 @@ class View{
             <div id=\"main\">
                 <div id=\"login\">
                     <table>
-                        <form action=\"\" method=\"post\" name=\"contacto\">
+                        <form action=\"\" method=\"post\" name=\"login\">
                             <tr>
                                 <td> Usuario </td>
                                 <td> <input name=\"user\" type=\"text\"> </td>
@@ -114,7 +114,7 @@ class View{
                                 <td><input name=\"password\" type=\"password\"></td>
                             <tr>
                             <tr>
-                                <td colspan='2'> <a href\"\" onclick=\"contacto.submit()\" class=\"boton\">Ingresar</a></td>
+                                <td colspan='2'> <a href\"\" onclick=\"login.submit()\" class=\"boton\">Ingresar</a></td>
                             <tr>
                         </form>
                     </table>
@@ -141,6 +141,50 @@ class View{
             </div>
         </div>";
     }
+
+    public static function formularioUsuarios($res=null){
+        if($res){
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            print_r($res);
+            foreach($res as $value){
+
+            }
+        }else{
+            echo "<div id=\"content\">
+                    <div id=\"main\">
+                        <form action=\"#\" method=\"post\" name=\"crear\">
+                            <table>
+                                <tr>
+                                    <td colspan='3' class='right'>id <input type='hidden' name='tipo' value='".$_GET['tipo']."' /><input type='hidden' name='accion' value='".$_GET['accion']."' /></td>
+                                </tr>
+                                <tr>
+                                    <td>Nombre</td>
+                                    <td><input type='text' name='nombre' /> </td>
+                                    <td rowspan='3'>Tipo de usuario<br /><br /><input type=\"radio\" name=\"tipo2\" value=\"1\"> Administrador<br /> <input type=\"radio\" name=\"tipo2\" value=\"3\"> Repartidor<br /> <input type=\"radio\" name=\"tipo2\" value=\"2\"> Cliente<br /> </td>
+                                </tr>
+                                <tr>
+                                    <td>Usuario</td>
+                                    <td><input type='text' name='usuario' /></td>
+                                </tr>
+                                <tr>
+                                    <td>Direcci&oacute;n</td>
+                                    <td><input type='text' name='direccion' /></td>
+                                </tr>
+                                <tr>
+                                    <td>Poblaci&oacute;n</td>
+                                    <td colspan='2'><input type='text' name='poblacion' /></td>
+                                </tr>
+                                <tr>
+                                    <td>Clave</td>
+                                    <td colspan='2'><input type='password' name='clave' /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">Agregar</a></td>
+                                </tr>
+                            </table>
+                        </form>";
+        }
+    }
     public static function gestionUsuarios($res){
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
@@ -149,10 +193,11 @@ class View{
                 if($first){
                     echo "<div id=\"content\">
                             <div id=\"main\"><table><tr>
-                                 <td colspan=\"9\" class=\"right\"> Agregar Nuevo Usuario <span class='icon-plus'></span></td>
+                                 <td colspan=\"8\" class=\"right\"><a href=\"usuarios.php?tipo=1&accion=crear\"><h1> Agregar Nuevo Usuario <span class='icon-user-plus'></span></h1></a></td>
                 </tr>
                 <tr>";
                     foreach($game as $field=>$value){
+                        if(!($field=="clave"))
                         echo "<th>$field</th>";
                     }
                     $first = false;
@@ -160,11 +205,13 @@ class View{
                 }
                 echo "<tr>";
                 foreach($game as $value){
-                    $id = $game['id'];
-                    echo "<td><a href=\"producto.php?id=".$id."\">$value</a></td>";
+                    if(!($game['clave']==$value)){
+                        $id = $game['id'];
+                        echo "<td><a href=\"producto.php?id=".$id."\">$value</a></td>";
+                    }
                 }
 
-                echo "  <td><a href=\"paso.php?tipo=2&id_usuario=".$id."\"><span class='icon-pencil'></span></a></td>
+                echo "  <td><a href=\"usuarios.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></td>
                         <td><a href=\"paso.php?tipo=1&id_usuario=".$id."\"><span class='icon-bin'></span></a></td>
                     </tr>";
             }
