@@ -9,7 +9,7 @@ if(isset($_GET['tipo'])){
         case 1: //borrar usuario
             if(isset($_GET['id_usuario'])){
                 Mod::borrarRegistro('usuarios',$_GET['id_usuario']);
-                header("location:gestionar.php?tipo=1&pag=gUsuarios3");
+                header("location:gestionar.php?tipo=1&pag=gUsuarios");
             }
             break;
         case 2: //editar usuario
