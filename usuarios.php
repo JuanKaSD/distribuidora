@@ -21,6 +21,10 @@ if(isset($_GET['accion']) &&  $_GET['tipo'] == $_SESSION["tipo"]){
         case "crear": //crear nuevo cliente
             View::formularioUsuarios();
             break;
+        case "borrar":
+            Mod::borrarRegistro('usuarios',$_GET['id']);
+            header("location:gestionar.php?tipo=1&pag=gUsuarios");
+            break;
     }
 }
 if(isset($_POST['accion']) &&  $_POST['tipo'] == $_SESSION["tipo"]){

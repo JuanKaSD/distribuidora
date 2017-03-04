@@ -20,6 +20,7 @@ class View{
         User::session_start();
         echo $html;
     }
+
     public static function navigation(){
         echo "
         <div class='menu_bar'>
@@ -58,6 +59,7 @@ class View{
         </div>
     </div>";
     }
+
     public static function bebidas($res){
         if($res){
             echo '<div id="content">
@@ -85,6 +87,7 @@ class View{
                 </div>';
         }
     }
+
     public static function contacto(){
         echo '<div id="content">
 			<div id="main">
@@ -98,6 +101,7 @@ class View{
 			</div>
 		</div>';
     }
+
     public static function login(){
         echo "
         <div id=\"content\">
@@ -223,6 +227,7 @@ class View{
                 </div>";
         }
     }
+
     public static function gestionUsuarios($res){
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
@@ -250,7 +255,7 @@ class View{
                 }
 
                 echo "  <td><a href=\"usuarios.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></td>
-                        <td><a href=\"paso.php?tipo=1&id_usuario=".$id."\"><span class='icon-bin'></span></a></td>
+                        <td><a href=\"usuarios.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></td>
                     </tr>";
             }
             echo '</table></div>
@@ -258,12 +263,15 @@ class View{
         }
 
     }
+
     public static function gestionStock(){
         echo ' ';
     }
+
     public static function gestionPedidos(){
         echo ' ';
     }
+
     public static function end(){
         echo '</body>
 </html>';
