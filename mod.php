@@ -12,12 +12,18 @@ class Mod{
     }
 
     public static function editarUsuario($datos){
-        //        Mod::conectar()->query('DELETE FROM ['.$tabla.'] WHERE id='.$id.';');
+        if($datos['clave']==""){
+            $res = Mod::conectar()->prepare("UPDATE usuarios SET usuario=?, nombre=?, tipo=?, poblacion=?, direccion=? WHERE id=?");
+            $res->execute(array($datos['usuario'], $datos['nombre'], $datos['tipo2'], $datos['poblacion'], $datos['direccion'],$datos['id']));
+
+        }else{
+            $res = Mod::conectar()->prepare("UPDATE usuarios SET usuario=?, clave=?, nombre=?, tipo=?, poblacion=?, direccion=? WHERE id=?");
+            $res->execute(array($datos['usuario'], md5($datos['clave']), $datos['nombre'], $datos['tipo2'], $datos['poblacion'], $datos['direccion'],$datos['id']));
+        }
     }
 
     public static function crearUsuario($datos){
-       Mod::conectar()->query("INSERT INTO [usuarios] ([usuario], [clave], [nombre], [tipo], [poblacion], [direccion]) VALUES ('".$datos['usuario']."', '".$datos['clave']."', '".$datos['nombre']."', '".$datos['tipo2']."', '".$datos['poblacion']."', '".$datos['direccion']."');");
-        // Mod::conectar()->query('DELETE FROM ['.$tabla.'] WHERE id='.$id.';');
+       Mod::conectar()->query("INSERT INTO [usuarios] ([usuario], [clave], [nombre], [tipo], [poblacion], [direccion]) VALUES ('".$datos['usuario']."', '".md5($datos['clave'])."', '".$datos['nombre']."', '".$datos['tipo2']."', '".$datos['poblacion']."', '".$datos['direccion']."');");
     }
 
     public static function iniDb(){                             //función para inicar la base de datos

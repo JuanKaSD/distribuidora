@@ -145,14 +145,50 @@ class View{
     public static function formularioUsuarios($res=null){
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
-            print_r($res);
-            foreach($res as $value){
-
+            foreach($res as $campo){
+                echo "<div id=\"content\">
+                        <div id=\"main\">
+                            <form action=\"usuarios.php\" method=\"post\" name=\"crear\">
+                                <table>
+                                    <tr>
+                                        <td colspan='3' class='right'>id: ".$campo['id']."<input type='hidden' name='id' value='".$campo['id']."' /><input type='hidden' name='tipo' value='".$_GET['tipo']."' /><input type='hidden' name='accion' value='".$_GET['accion']."' /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombre</td>
+                                        <td><input type='text' name='nombre' value=\"".$campo['nombre']."\"/> </td>
+                                        <td rowspan='3'>Tipo de usuario<br /><br />
+                                            <input type=\"radio\" name=\"tipo2\" value=\"1\"";if($campo['tipo']==1) echo "checked"; echo "> Administrador<br />
+                                            <input type=\"radio\" name=\"tipo2\" value=\"3\"";if($campo['tipo']==3) echo "checked"; echo "> Repartidor<br />
+                                            <input type=\"radio\" name=\"tipo2\" value=\"2\"";if($campo['tipo']==2) echo "checked"; echo "> Cliente<br /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Usuario</td>
+                                        <td><input type='text' name='usuario' value=\"".$campo['usuario']."\" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Direcci&oacute;n</td>
+                                        <td><input type='text' name='direccion' value=\"".$campo['direccion']."\" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Poblaci&oacute;n</td>
+                                        <td colspan='2'><input type='text' name='poblacion' value=\"".$campo['poblacion']."\" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Clave</td>
+                                        <td colspan='2'><input type='password' name='clave' value=\"\" /> deje vacia para mantener la anterior.</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>";
             }
         }else{
             echo "<div id=\"content\">
                     <div id=\"main\">
-                        <form action=\"#\" method=\"post\" name=\"crear\">
+                        <form action=\"usuarios.php\" method=\"post\" name=\"crear\">
                             <table>
                                 <tr>
                                     <td colspan='3' class='right'>id <input type='hidden' name='tipo' value='".$_GET['tipo']."' /><input type='hidden' name='accion' value='".$_GET['accion']."' /></td>
@@ -182,7 +218,9 @@ class View{
                                     <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">Agregar</a></td>
                                 </tr>
                             </table>
-                        </form>";
+                        </form>
+                    </div>
+                </div>";
         }
     }
     public static function gestionUsuarios($res){
