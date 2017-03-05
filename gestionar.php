@@ -39,7 +39,7 @@ if(isset($_GET['tipo']) && $_GET['tipo'] == $_SESSION["tipo"]){
                         View::gestionClientes($res);
                         break;
                     case "gPedidos": //gestionar pedidos
-                        $res = DB::execute_sql("SELECT * FROM pedidos WHERE id='".$_SESSION['id']."'");
+                        $res = DB::execute_sql("SELECT id, poblacionentrega, direccionentrega, horacreacion, horaasignacion, horareparto, horaentrega, PVP FROM pedidos WHERE idcliente='".$_SESSION['id']."' ORDER BY id DESC");
                         View::gestionPedidosCliente($res);
                         break;
                     default :// menu principal

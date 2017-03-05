@@ -394,7 +394,7 @@ class View{
 
                 }
 
-                echo "  <td><a href=\"pedidos.php?tipo=1&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></td>
+                echo "  <td><a href=\"pedidos.php?tipo=2&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></td>
                     </tr>";
             }
             echo '</table></div>
@@ -450,6 +450,34 @@ class View{
                             </table>
                         </div>
                     </div>
+                </div>";
+        }
+    }
+
+    public static function verPedido($res){
+        $total=0;
+        if($res){
+            echo '<div id="content">
+                    <div id="main">';
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            foreach($res as $game){
+                if($first){
+                    echo "<table><tr>";
+                    foreach($game as $field=>$value){
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "</tr>";
+                }
+                echo "<tr>";
+                foreach($game as $value){
+                    echo "<td>$value</td>";
+                }
+                $total+=$game['PVP']*$game['unidades'];
+
+            }
+            echo "<tr><td colspan='4' class='right'> Total: $total&euro;</td></tr></table></div>
                 </div>";
         }
     }
