@@ -49,10 +49,22 @@ if(isset($_GET['tipo']) && $_GET['tipo'] == $_SESSION["tipo"]){
             } else { View::gestionClientes(); };
             break;
         case 3: //repartidor
-            echo 'menu repartidor';
+            if(isset($_GET['pag'])){
+                $res = DB::execute_sql('SELECT id, poblacionentrega, direccionentrega FROM pedidos WHERE horaasignacion IS NULL OR horaasignacion = 0');
+                switch ($_GET['pag']) {
+                    case "gAPedidos": //Asignarse pedido nuevo
+                        View::gestionRepartidores($res);
+                        break;
+                    case "gMPedidos": //Modificar pedidos
+                        $res = DB::execute_sql("SELECT id, poblacionentrega, direccionentrega FROM pedidos WHERE idrepartidor=".$_SESSION['id']." AND (horaentrega IS NULL OR horaentrega = 0)");
+                        View::gestionPedidosRepartidores($res);
+                        break;
+                    default :// menu principal
+                        View::gestionrepartidores($res);
+                        break;
+                }
+            } else { View::gestionRepartidores(); };
             break;
     }
-}else{
-    echo "<div id=\"error\"><h2>un intruso!!!! llamando a la poli... no te vallas aveces tardan en llegar... jejejejeje</h2></div>";
 }
 View::end();

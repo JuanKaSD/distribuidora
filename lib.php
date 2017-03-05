@@ -428,12 +428,12 @@ class View{
                 }
                 echo "<tr>";
                 foreach($game as $value){
-                    $id = $game['id'];
-                    $PVP = $game['PVP'];
                     echo "<td>$value</td>";
                 }
+                $id = $game['id'];
+                $PVP = $game['PVP'];
 
-                echo "    <td class=\"right\"><input type='text' name='cantidad_$id' size='5'/></td></td>
+                echo "    <td class=\"right\"><input type='text' name='cantidad_$id' size='5'/></td>
                     </tr>";
             }
             echo '</table></form></div>
@@ -479,6 +479,83 @@ class View{
             }
             echo "<tr><td colspan='4' class='right'> Total: $total&euro;</td></tr></table></div>
                 </div>";
+        }
+    }
+
+    public static function gestionRepartidores($res=null){
+        if($res){
+            echo '<div id="content">
+                    <div id="main">
+                        <h2>Listado de pedidos</h2>';
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            foreach($res as $game){
+                if($first){
+                    echo "<form action=\"repartidores.php\" method=\"post\" name=\"crear\">
+                            <table><tr>
+                                 <td colspan=\"5\" class=\"right\"><a onclick=\"crear.submit()\"><h1> Asignarse Pedido<span class='icon-cart'></span></h1></a></td>
+                </tr>
+                <tr>";
+                    foreach($game as $field=>$value){
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "<th></th></tr>";
+                }
+                echo "<tr>";
+                foreach($game as $value){
+                    echo "<td>$value</td>";
+                }
+                $id = $game['id'];
+                echo "<td class=\"right\"><input type='checkbox' name='$id' value='$id'/></td></tr>";
+            }
+            echo '</table></form></div>
+                </div>';
+        }else{
+            echo "<div id=\"content\">
+                    <div id=\"main\">
+                        <div id=\"login\">
+                            <table>
+                                <tr>
+                                    <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gMPedidos\" class=\"boton\">Modificar Pedidos</a></td>
+                                    <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gAPedidos\" class=\"boton\">Asignarse pedido nuevo</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>";
+        }
+    }
+
+    public static function gestionPedidosRepartidores($res){
+        if($res){
+            echo '<div id="content">
+                    <div id="main">';
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            foreach($res as $game){
+                if($first){
+                    echo "<table><tr>";
+                    foreach($game as $field=>$value){
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "<th>Repartir</th><th>Entregar</th></tr>";
+                }
+                echo "<tr>";
+                foreach($game as $value){
+
+                        echo "<td>$value</td>";
+
+                }
+                $id = $game['id'];
+
+                echo "  <td><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=repartir\"><span class='icon-truck big'></span></td>
+                        <td><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=entregar\"><span class='icon-stopwatch big'></span></td>
+                    </tr>";
+            }
+            echo '</table></div>
+                </div>';
         }
     }
 
