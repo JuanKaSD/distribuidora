@@ -13,10 +13,12 @@ if(isset($_POST)){
         if($value!=null){
             if(strstr($field, "_",true) =="cantidad"){
                 $idbebida = substr(strrchr($field, "_"), 1);
-                $res = DB::execute_sql("SELECT PVP FROM bebidas WHERE id =".$idbebida);
+                $res = DB::execute_sql("SELECT PVP, stock FROM bebidas WHERE id =".$idbebida);
                 $res->setFetchMode(PDO::FETCH_NAMED);
                    foreach($res as $campo){
                        DB::execute_sql("INSERT INTO [lineaspedido] ([idpedido], [idbebida], [unidades], [PVP]) VALUES ($idpedido, $idbebida,$value,".$campo['PVP'].")");
+                       $newstock=$campo['stock']-$value;
+                       DB::execute_sql("UPDATE bebidas SET stock=$newstock WHERE id=$idbebida");
                        $total+=$campo['PVP']*$value;
                    }
 
