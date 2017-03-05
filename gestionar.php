@@ -22,7 +22,7 @@ if(isset($_GET['tipo']) && $_GET['tipo'] == $_SESSION["tipo"]){
                         View::gestionStock($res);
                         break;
                     case "gPedidos": //gestionar pedidos
-                        $res = DB::execute_sql('SELECT * FROM pedidos');
+                        $res = DB::execute_sql('SELECT id, poblacionentrega , horacreacion, idrepartidor, horaasignacion, horareparto, horaentrega, PVP FROM pedidos');
                         View::gestionPedidos($res);
                         break;
                     default :// menu principal
@@ -32,10 +32,24 @@ if(isset($_GET['tipo']) && $_GET['tipo'] == $_SESSION["tipo"]){
             } else { View::gestionAdmin(); }
             break;
         case 2: //cliente
-            echo "ta en el 2";
+            if(isset($_GET['pag'])){
+                $res = DB::execute_sql('SELECT id, marca, PVP FROM bebidas');
+                switch ($_GET['pag']) {
+                    case "gProductos": //getionar pedido nuevo
+                        View::gestionClientes($res);
+                        break;
+                    case "gPedidos": //gestionar pedidos
+                        $res = DB::execute_sql("SELECT * FROM pedidos WHERE id='".$_SESSION['id']."'");
+                        View::gestionPedidosCliente($res);
+                        break;
+                    default :// menu principal
+                        View::gestionClientes($res);
+                        break;
+                }
+            } else { View::gestionClientes(); };
             break;
         case 3: //repartidor
-            echo "ta en el 3";
+            echo 'menu repartidor';
             break;
     }
 }else{

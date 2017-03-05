@@ -344,7 +344,16 @@ class View{
                 echo "<tr>";
                 foreach($game as $value){
                     $id = $game['id'];
-                    echo "<td>$value</td>";
+                    if($game['horacreacion'] === $value || $game['horaasignacion'] === $value || $game['horareparto'] === $value || $game['horaentrega'] === $value) {
+                        if($value == null || $value == 0 ){
+                            echo "<td></td>";
+                        }else{
+                            echo "<td>".date("d-m-Y H:i",$value)."</td>";
+                        }
+                    }else{
+                        echo "<td>$value</td>";
+                    }
+
                 }
 
                 echo "  <td><a href=\"pedidos.php?tipo=1&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></td>
@@ -352,6 +361,96 @@ class View{
             }
             echo '</table></div>
                 </div>';
+        }
+    }
+
+    public static function gestionPedidosCliente($res){
+        if($res){
+            echo '<div id="content">
+                    <div id="main">';
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            foreach($res as $game){
+                if($first){
+                    echo "<table><tr>";
+                    foreach($game as $field=>$value){
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "<th></th></tr>";
+                }
+                echo "<tr>";
+                foreach($game as $value){
+                    $id = $game['id'];
+                    if($game['horacreacion'] === $value || $game['horaasignacion'] === $value || $game['horareparto'] === $value || $game['horaentrega'] === $value) {
+                        if($value == null || $value == 0 ){
+                            echo "<td></td>";
+                        }else{
+                            echo "<td>".date("d-m-Y H:i",$value)."</td>";
+                        }
+                    }else{
+                        echo "<td>$value</td>";
+                    }
+
+                }
+
+                echo "  <td><a href=\"pedidos.php?tipo=1&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></td>
+                    </tr>";
+            }
+            echo '</table></div>
+                </div>';
+        }
+    }
+
+    public static function gestionClientes($res=null){
+        if($res){
+            echo '<div id="content">
+                    <div id="main">
+                        <h2>Listado de bebidas</h2>';
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            foreach($res as $game){
+                if($first){
+                    echo "<form action=\"clientes.php\" method=\"post\" name=\"crear\">
+                            <table><tr>
+                                 <td colspan=\"5\" class=\"right\"><a onclick=\"crear.submit()\"><h1> Hacer Pedido<span class='icon-cart'></span></h1></a></td>
+                </tr>
+                <tr>
+                                 <td colspan=\"2\" class=\"right\">Poblac&oacute;n de entrega: <input type='text' name='poblacion' /></td>
+                                 <td colspan=\"3\" class=\"right\">Direcc&oacute;n de entrega: <input type='text' name='direccion' /></td>
+                </tr>
+                <tr>";
+                    foreach($game as $field=>$value){
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "<th>Cantidad</th></tr>";
+                }
+                echo "<tr>";
+                foreach($game as $value){
+                    $id = $game['id'];
+                    $PVP = $game['PVP'];
+                    echo "<td>$value</td>";
+                }
+
+                echo "    <td class=\"right\"><input type='text' name='cantidad_$id' size='5'/></td></td>
+                    </tr>";
+            }
+            echo '</table></form></div>
+                </div>';
+        }else{
+            echo "<div id=\"content\">
+                    <div id=\"main\">
+                        <div id=\"login\">
+                            <table>
+                                <tr>
+                                    <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Ver Pedidos</a></td>
+                                    <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gProductos\" class=\"boton\">Hacer pedido nuevo</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>";
         }
     }
 

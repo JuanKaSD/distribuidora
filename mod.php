@@ -172,6 +172,21 @@ class DB{
         }
         return $false;
     }
+
+    public static function execute_insert($sql,$parms=null){
+        try {
+            $db = self::get();
+            $ints= $db->prepare ( $sql );
+            $db->beginTransation();
+            $ints->execute($parms);
+            $db->commit();
+            return  $db->lastInsertId();
+        }
+        catch (PDOException $e) {
+            echo '<h1>Error en la base de datos: ' . $e->getMessage() . '</h1>';
+        }
+        return $false;
+    }
 }
 
 
