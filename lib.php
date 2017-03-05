@@ -8,7 +8,7 @@ class View{
         <head>
             <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
             <title>$title</title>
-            <link href=\"estilo.css\" rel=\"stylesheet\" type=\"text/css\" />
+            <link href=\"estilos.css\" rel=\"stylesheet\" type=\"text/css\" />
             <link rel=\"stylesheet\" type=\"text/css\" href=\"fuentes.css\" media=\"all\">
         </head>
 
