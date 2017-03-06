@@ -4,10 +4,10 @@ include_once 'mod.php';
 View::start('Distribuidora');
 View::navigation();
 if (isset($_GET['contacto'])){
-    $para      = 'webmaster@pagina.com';
+    $para      = 'jjcinformatik@gmail.com';
     $titulo    = 'contacto desde distribuidora';
-    $mensaje = wordwrap($_GET['mensaje'], 70, "\r\n");
-    $cabeceras = "From: ".$_GET['eCliente'] . "\r\n" . "X-Mailer: PHP/" . phpversion();
+    $mensaje = wordwrap($_POST['mensaje'], 70, "\r\n");
+    $cabeceras = "From: ".$_POST['eCliente'] . "\r\n" . "X-Mailer: PHP/" . phpversion();
     mail($para, $titulo, $mensaje, $cabeceras);
 }
 View::contacto();
