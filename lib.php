@@ -44,7 +44,7 @@ class View{
         </nav>";
     }
 
-    public static function presentacion(){
+    public static function contenidoIndex(){
         echo "<div id=\"content\">
         <div id=\"main\">
             <p>DBBR es una empresa especializada en venta de bebidas desde hace más de 10 a&ntilde;os. Nos encargamos del reparto en oficinas, locales, bares, restaurantes, hoteles, vending y SPAs.
