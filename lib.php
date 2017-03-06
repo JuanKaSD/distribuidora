@@ -60,17 +60,33 @@ class View{
     }
 
     public static function contacto(){
-        echo '<div id="content">
-			<div id="main">
+        echo "<div id=\"content\">
+			<div id=\"main\">
 				<h2>DBBR. Distribuci&oacute;n de Bebidas a Bares y Restaurantes.</h2>
 				<p>Calle artenara, 33. 35017 Las Palmas De Gran Canaria. Las Palmas. </p>
 
 				<p>	[Tel&eacute;fono] 928 000 000 - 928 000 001<br/>
 					Horario: Lunes-sabado: 13:30 - 17:30 / 20:30 - 23:30<br/>
-					<img src="imagenes/mapa.jpg" alt="mapa" id="mapa"/>
+					<img src=\"imagenes/mapa.jpg\" alt=\"mapa\" id=\"mapa\"/>
 				</p>
+                <h2>Puede contactarnos llenando el siguiente formulario.</h2>
+                <table>
+                    <form action=\"\" method=\"post\" name=\"contacto\">
+                        <tr>
+                            <td> Email </td>
+                            <td> <input name=\"eCliente\" type=\"text\"> </td>
+                        </tr>
+                        <tr>
+                            <td> Mensaje </td>
+                            <td><textarea name=\"mensaje\" rows=\"10\" cols=\"40\"></textarea></td>
+                        <tr>
+                        <tr>
+                            <td colspan=\"2\"> <a href\"\" onclick=\"contacto.submit()\" class=\"boton\">Enviar</a></td>
+                        <tr>
+                    </form>
+                </table>
 			</div>
-		</div>';
+		</div>";
     }
 
     public static function login(){
@@ -89,7 +105,7 @@ class View{
                                 <td><input name=\"password\" type=\"password\"></td>
                             <tr>
                             <tr>
-                                <td colspan='2'> <a href\"\" onclick=\"login.submit()\" class=\"boton\">Ingresar</a></td>
+                                <td colspan=\"2\"> <a href\"\" onclick=\"login.submit()\" class=\"boton\">Ingresar</a></td>
                             <tr>
                         </form>
                     </table>
