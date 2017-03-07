@@ -322,70 +322,73 @@ class View{
     }
 
     public static function formularioBebidas($res=null){
-        echo "<div id=\"content\">
-                    <div id=\"main\">
-                        <form action=\"bebidas.php\" method=\"post\" name=\"crear\">
-                            <div id=\"contenedor\">
-                                <div id=\"contenidos\">";
+        echo "
+        <div id=\"content\">
+            <div id=\"main\">
+                <form action=\"bebidas.php\" method=\"post\" name=\"crear\">
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">";
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
             foreach($res as $campo){
-                echo "                  <div id=\"columna1\">id: ".$campo['id']."
-                                            <input type='hidden' name='id' value='".$campo['id']."' />
-                                            <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
-                                            <input type='hidden' name='accion' value='".$_GET['accion']."' />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id=\"contenedor\">
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">Marca</div>
-                                        <div id=\"columna2\"><input type='text' name='marca' value=\"".$campo['marca']."\"/> </div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">Stock</div>
-                                        <div id=\"columna2\"><input type='text' name='stock' value=\"".$campo['stock']."\" /></div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">P.V.P</div>
-                                        <div id=\"columna2\"><input type='text' name='PVP' value=\"".$campo['PVP']."\" /></div>
-                                    </div>
-                                </div>
-                                <div id=\"contenedor\">
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna3\"><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
+                echo "
+                            <div id=\"columna1\">id: ".$campo['id']."
+                                <input type='hidden' name='id' value='".$campo['id']."' />
+                                <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
+                                <input type='hidden' name='accion' value='".$_GET['accion']."' />
+                            </div>
+                        </div>
+                    </div>
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Marca</div>
+                            <div id=\"columna2\"><input type='text' name='marca' value=\"".$campo['marca']."\"/> </div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Stock</div>
+                            <div id=\"columna2\"><input type='text' name='stock' value=\"".$campo['stock']."\" /></div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">P.V.P</div>
+                            <div id=\"columna2\"><input type='text' name='PVP' value=\"".$campo['PVP']."\" /></div>
+                        </div>
+                    </div>
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna3\"><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
             }
         }else{
-            echo "                  <div id=\"columna1\">id:
-                                            <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
-                                            <input type='hidden' name='accion' value='".$_GET['accion']."' />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id=\"contenedor\">
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">Marca</div>
-                                        <div id=\"columna2\"><input type='text' name='marca' /> </div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">Stock</div>
-                                        <div id=\"columna2\"><input type='text' name='stock' /></div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">P.V.P</div>
-                                        <div id=\"columna2\"><input type='text' name='PVP' /></div>
-                                    </div>
-                                </div>
-                                <div id=\"contenedor\">
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna3\"><a href\"\" onclick=\"crear.submit()\" class=\"boton\">agregar</a>";
-        }
-        echo "                      </div>
-                                </div>
+            echo "
+                            <div id=\"columna1\">id:
+                                <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
+                                <input type='hidden' name='accion' value='".$_GET['accion']."' />
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>";
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Marca</div>
+                            <div id=\"columna2\"><input type='text' name='marca' /> </div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Stock</div>
+                            <div id=\"columna2\"><input type='text' name='stock' /></div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">P.V.P</div>
+                            <div id=\"columna2\"><input type='text' name='PVP' /></div>
+                        </div>
+                    </div>
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna3\"><a href\"\" onclick=\"crear.submit()\" class=\"boton\">agregar</a>";
+        }
+        echo "              </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>";
     }
 
     public static function gestionPedidos($res){
@@ -439,14 +442,16 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<div id=\"contenedor\"><div id=\"contenidos\">";
+                    echo "<div id=\"contenedor\">
+                            <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<div id=\"cabecera\">$field</div>";
+                        echo "  <div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<div id=\"cabecera\"></div></div>";
+                    echo "      <div id=\"cabecera\"></div>
+                            </div>";
                 }
-                echo "<div id=\"contenidos\">";
+                echo "      <div id=\"contenidos\">";
                 foreach($game as $value){
                     $id = $game['id'];
                     if($game['horacreacion'] === $value || $game['horaasignacion'] === $value || $game['horareparto'] === $value || $game['horaentrega'] === $value) {
@@ -471,40 +476,50 @@ class View{
 
     public static function gestionClientes($res=null){
         if($res){
-            echo '<div id="content">
-                    <div id="main">
-                        <h2>Listado de bebidas</h2>';
+            echo "
+            <div id=\"content\">
+                <div id=\"main\">
+                    <h2>Listado de bebidas</h2>";
             $res->setFetchMode(PDO::FETCH_NAMED);
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<form action=\"clientes.php\" method=\"post\" name=\"crear\">
-                            <div id=\"contenedor\"><div id=\"contenidos\">
-                                 <td colspan=\"5\" class=\"right\"><a onclick=\"crear.submit()\"><h1> Hacer Pedido<span class='icon-cart'></span></h1></a></div>
-                </div>
-                <div id=\"contenidos\">
-                                 <td colspan=\"2\" class=\"right\">Poblac&oacute;n de entrega: <input type='text' name='poblacion' /></div>
-                                 <td colspan=\"3\" class=\"right\">Direcc&oacute;n de entrega: <input type='text' name='direccion' /></div>
-                </div>
-                <div id=\"contenidos\">";
+                    echo "
+                    <form action=\"clientes.php\" method=\"post\" name=\"crear\">
+                        <div id=\"contenedor\">
+                            <div id=\"contenidos\">
+                                <div id=\"columna1\"><a onclick=\"crear.submit()\"><h1> Hacer Pedido<span class='icon-cart'></span></h1></a></div>
+                            </div>
+                        </div>
+                        <div id=\"contenedor\">
+                            <div id=\"contenidos\">
+                                <div id=\"columna2\">Poblac&oacute;n de entrega: <input type='text' name='poblacion' /></div>
+                                <div id=\"columna2\">Direcc&oacute;n de entrega: <input type='text' name='direccion' /></div>
+                            </div>
+                        </div>
+                        <div id=\"contenedor\">
+                            <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<div id=\"cabecera\">$field</div>";
+                        echo "  <div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<div id=\"cabecera\">Cantidad</div></div>";
+                    echo "      <div id=\"cabecera\">Cantidad</div>
+                            </div>";
                 }
-                echo "<div id=\"contenidos\">";
+                echo "      <div id=\"contenidos\">";
                 foreach($game as $value){
-                    echo "<div id=\"columna1\">$value</div>";
+                    echo "      <div id=\"columna2\">$value</div>";
                 }
                 $id = $game['id'];
                 $PVP = $game['PVP'];
 
-                echo "    <td class=\"right\"><input type='text' name='cantidad_$id' size='5'/></div>
-                    </div>";
+                echo "          <div id=\"columna3\"><input type='text' name='cantidad_$id' size='5'/></div>
+                             </div>";
             }
-            echo '</div></form></div>
-                </div>';
+            echo "      </div>
+                    </form>
+                </div>
+            </div>";
         }else{
             echo "<div id=\"content\">
                     <div id=\"main\">
@@ -549,7 +564,7 @@ class View{
             echo "      </div>
                         <div id=\"contenedor\">
                             <div id=\"contenidos\">
-                                <div id=\"columna3\"> Total: $total&euro;</div>
+                                <div id=\"columna2\"> Total: $total&euro;</div>
                             </div>
                         </div>
                     </div>
@@ -567,24 +582,31 @@ class View{
             foreach($res as $game){
                 if($first){
                     echo "<form action=\"repartidores.php\" method=\"post\" name=\"crear\">
-                            <div id=\"contenedor\"><div id=\"contenidos\">
-                                 <td colspan=\"5\" class=\"right\"><a onclick=\"crear.submit()\"><h1> Asignarse Pedido<span class='icon-cart'></span></h1></a></div>
-                </div>
-                <div id=\"contenidos\">";
+                            <div id=\"contenedor\">
+                                <div id=\"contenidos\">
+                                    <div id=\"columna1\"><a onclick=\"crear.submit()\"><h1> Asignarse Pedido<span class='icon-cart'></span></h1></a></div>
+                                </div>
+                            </div>
+                            <div id=\"contenedor\">
+                                <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<div id=\"cabecera\">$field</div>";
+                        echo "      <div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<div id=\"cabecera\"></div></div>";
+                    echo "          <div id=\"cabecera\"></div>
+                                </div>";
                 }
-                echo "<div id=\"contenidos\">";
+                echo "          <div id=\"contenidos\">";
                 foreach($game as $value){
-                    echo "<div id=\"columna1\">$value</div>";
+                    echo "          <div id=\"columna1\">$value</div>";
                 }
                 $id = $game['id'];
-                echo "<td class=\"right\"><input type='checkbox' name='$id' value='$id'/></div></div>";
+                echo "              <div id=\"columna3\"><input type='checkbox' name='$id' value='$id'/></div>
+                                </div>";
             }
-            echo '</div></form></div>
+            echo '          </div>
+                        </form>
+                    </div>
                 </div>';
         }else{
             echo "<div id=\"content\">
@@ -610,26 +632,30 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<div id=\"contenedor\"><div id=\"contenidos\">";
+                    echo "<div id=\"contenedor\">
+                            <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<div id=\"cabecera\">$field</div>";
+                        echo "  <div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<div id=\"cabecera\">Repartir</div><div id=\"cabecera\">Entregar</div></div>";
+                    echo "      <div id=\"cabecera\">Repartir</div>
+                                <div id=\"cabecera\">Entregar</div>
+                            </div>";
                 }
-                echo "<div id=\"contenidos\">";
+                echo "      <div id=\"contenidos\">";
                 foreach($game as $value){
 
-                        echo "<div id=\"columna1\">$value</div>";
+                        echo "  <div id=\"columna1\">$value</div>";
 
                 }
                 $id = $game['id'];
 
-                echo "  <div id=\"columna1\"><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=repartir\"><span class='icon-truck big'></span></div>
-                        <div id=\"columna1\"><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=entregar\"><span class='icon-stopwatch big'></span></div>
-                    </div>";
+                echo "          <div id=\"columna1\"><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=repartir\"><span class='icon-truck big'></span></a></div>
+                                <div id=\"columna1\"><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=entregar\"><span class='icon-stopwatch big'></span></a></div>
+                            </div>";
             }
-            echo '</div></div>
+            echo '      </div>
+                    </div>
                 </div>';
         }
     }
