@@ -330,47 +330,55 @@ class View{
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
             foreach($res as $campo){
-                echo "                  <td colspan='2' class='right'>id: ".$campo['id']."
+                echo "                  <div id=\"columna1\">id: ".$campo['id']."
                                             <input type='hidden' name='id' value='".$campo['id']."' />
                                             <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
                                             <input type='hidden' name='accion' value='".$_GET['accion']."' />
                                         </div>
                                     </div>
+                                </div>
+                                <div id=\"contenedor\">
                                     <div id=\"contenidos\">
                                         <div id=\"columna1\">Marca</div>
-                                        <div id=\"columna1\"><input type='text' name='marca' value=\"".$campo['marca']."\"/> </div>
+                                        <div id=\"columna2\"><input type='text' name='marca' value=\"".$campo['marca']."\"/> </div>
                                     </div>
                                     <div id=\"contenidos\">
                                         <div id=\"columna1\">Stock</div>
-                                        <div id=\"columna1\"><input type='text' name='stock' value=\"".$campo['stock']."\" /></div>
+                                        <div id=\"columna2\"><input type='text' name='stock' value=\"".$campo['stock']."\" /></div>
                                     </div>
                                     <div id=\"contenidos\">
                                         <div id=\"columna1\">P.V.P</div>
-                                        <div id=\"columna1\"><input type='text' name='PVP' value=\"".$campo['PVP']."\" /></div>
+                                        <div id=\"columna2\"><input type='text' name='PVP' value=\"".$campo['PVP']."\" /></div>
                                     </div>
+                                </div>
+                                <div id=\"contenedor\">
                                     <div id=\"contenidos\">
-                                        <td colspan='2'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
+                                        <div id=\"columna3\"><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
             }
         }else{
-            echo "                  <td colspan='2' class='right'>id:
+            echo "                  <div id=\"columna1\">id:
                                             <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
                                             <input type='hidden' name='accion' value='".$_GET['accion']."' />
                                         </div>
                                     </div>
+                                </div>
+                                <div id=\"contenedor\">
                                     <div id=\"contenidos\">
                                         <div id=\"columna1\">Marca</div>
-                                        <div id=\"columna1\"><input type='text' name='marca' /> </div>
+                                        <div id=\"columna2\"><input type='text' name='marca' /> </div>
                                     </div>
                                     <div id=\"contenidos\">
                                         <div id=\"columna1\">Stock</div>
-                                        <div id=\"columna1\"><input type='text' name='stock' /></div>
+                                        <div id=\"columna2\"><input type='text' name='stock' /></div>
                                     </div>
                                     <div id=\"contenidos\">
                                         <div id=\"columna1\">P.V.P</div>
-                                        <div id=\"columna1\"><input type='text' name='PVP' /></div>
+                                        <div id=\"columna2\"><input type='text' name='PVP' /></div>
                                     </div>
+                                </div>
+                                <div id=\"contenedor\">
                                     <div id=\"contenidos\">
-                                        <td colspan='2'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">agregar</a>";
+                                        <div id=\"columna3\"><a href\"\" onclick=\"crear.submit()\" class=\"boton\">agregar</a>";
         }
         echo "                      </div>
                                 </div>
