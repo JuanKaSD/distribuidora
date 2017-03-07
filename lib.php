@@ -276,34 +276,47 @@ class View{
 
     public static function gestionStock($res){
         if($res){
-            echo '<div id="content">
-                    <div id="main">
-                        <h2>Listado de bebidas</h2>
-                        <img src="imagenes/img03.png" alt="bebidas" />';
+            echo '
+            <div id="content">
+                <div id="main">
+                    <h2>Listado de bebidas</h2>
+                    <img src="imagenes/img03.png" alt="bebidas" />';
             $res->setFetchMode(PDO::FETCH_NAMED);
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<div id=\"contenedor\"><div id=\"contenidos\">
-                                 <td colspan=\"6\" class=\"right\"><a href=\"bebidas.php?tipo=1&accion=crear\"><h1> Agregar Nueva bebida <span class='icon-glass2'></span></h1></a></div>
-                </div><div id=\"contenidos\">";
+                    echo "
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                                 <div id=\"columna1\">
+                                    <a href=\"bebidas.php?tipo=1&accion=crear\">
+                                        <h1> Agregar Nueva bebida <span class='icon-glass2'></span></h1>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id=\"contenedor\">
+                            <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<div id=\"cabecera\">$field</div>";
+                        echo "  <div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<div id=\"cabecera\"></div><div id=\"cabecera\"></div></div>";
+                    echo "      <div id=\"cabecera\"></div>
+                                <div id=\"cabecera\"></div>
+                            </div>";
                 }
-                echo "<div id=\"contenidos\">";
+                echo "      <div id=\"contenidos\">";
                 foreach($game as $value){
                     $id = $game['id'];
-                    echo "<div id=\"columna1\">$value</div>";
+                    echo "      <div id=\"columna2\">$value</div>";
                 }
 
-                echo "  <div id=\"columna1\"><a href=\"bebidas.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></div>
-                        <div id=\"columna1\"><a href=\"bebidas.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></div>
-                    </div>";
+                echo "          <div id=\"columna3\"><a href=\"bebidas.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></div>
+                                <div id=\"columna3\"><a href=\"bebidas.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></div>
+                            </div>";
             }
-            echo '</div></div>
+            echo '      </div>
+                    </div>
                 </div>';
         }
     }
