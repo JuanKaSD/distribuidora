@@ -19,6 +19,11 @@ class View{
         echo $html;
     }
 
+    public static function error($mensaje){
+         echo " <div id=\"content\">
+                    <div id=\"main\"><h2>$mensaje</h2></div>
+                </div>";
+    }
     public static function navigation(){
         echo "
         <div class='menu_bar'>

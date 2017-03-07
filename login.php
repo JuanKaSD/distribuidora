@@ -15,7 +15,7 @@ if (isset($_POST['user'])){
         $_SESSION['id'] = $result['id'];
         header("location:index.php");
     }else {
-        echo "<div id=\"error\"><h2>Error, Datos erroneos.</h2></div>";
+       View::error("Error, Datos erroneos.");
     }
 }
 View::login();
