@@ -140,119 +140,138 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<div id=\"content\">
-                            <div id=\"main\">
-                                <div id=\"contenedor\">
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\"><a href=\"usuarios.php?tipo=1&accion=crear\"><h1> Agregar Nuevo Usuario <span class='icon-user-plus'></span></h1></a></div>
-                                    </div>
+                    echo "
+                    <div id=\"content\">
+                        <div id=\"main\">
+                            <div id=\"contenedor\">
+                                <div id=\"contenidos\">
+                                    <div id=\"columna1\"><a href=\"usuarios.php?tipo=1&accion=crear\"><h1> Agregar Nuevo Usuario <span class='icon-user-plus'></span></h1></a></div>
                                 </div>
-                                <div id=\"contenedor\">
-                                    <div id=\"contenidos\">";
+                            </div>
+                            <div id=\"contenedor\">
+                                <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
                         if(!($field=="clave"))
-                        echo "<div id=\"cabecera\">$field</div>";
+                        echo "
+                                    <div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<div id=\"cabecera\"></div><div id=\"cabecera\"></div></div>";
+                    echo "
+                                    <div id=\"cabecera\"></div>
+                                    <div id=\"cabecera\"></div>
+                                </div>";
                 }
-                echo "<div id=\"contenidos\">";
+                echo "          <div id=\"contenidos\">";
                 foreach($game as $value){
                     if(!($game['clave']==$value)){
                         $id = $game['id'];
-                        echo "<div id=\"columna2\">$value</div>";
+                        echo "      <div id=\"columna2\">$value</div>";
                     }
                 }
 
-                echo "  <div id=\"columna3\"><a href=\"usuarios.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></div>
-                        <div id=\"columna3\"><a href=\"usuarios.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></div>
-                    </div>";
+                echo "                  <div id=\"columna3\"><a href=\"usuarios.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></div>
+                                        <div id=\"columna3\"><a href=\"usuarios.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></div>
+                                    </div>";
             }
-            echo '
-                    </div>
-                </div>';
+            echo '              </div>
+                            </div>';
         }
 
     }
 
     public static function formularioUsuarios($res=null){
-        echo "<div id=\"content\">
-                    <div id=\"main\">
-                        <form action=\"usuarios.php\" method=\"post\" name=\"crear\">
-                            <div id=\"contenedor\">
-                                <div id=\"contenidos\">";
+        echo "
+        <div id=\"content\">
+            <div id=\"main\">
+                <form action=\"usuarios.php\" method=\"post\" name=\"crear\">
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">";
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
             foreach($res as $campo){
-                echo "                 <td colspan='3' class='right'>id: ".$campo['id']."
-                                            <input type='hidden' name='id' value='".$campo['id']."' />
-                                            <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
-                                            <input type='hidden' name='accion' value='".$_GET['accion']."' />
-                                        </div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">Nombre</div>
-                                        <div id=\"columna1\"><input type='text' name='nombre' value=\"".$campo['nombre']."\"/> </div>
-                                        <td rowspan='3'>Tipo de usuario<br /><br />
-                                            <input type=\"radio\" name=\"tipo2\" value=\"1\"";if($campo['tipo']==1) echo "checked"; echo "> Administrador<br />
-                                            <input type=\"radio\" name=\"tipo2\" value=\"3\"";if($campo['tipo']==3) echo "checked"; echo "> Repartidor<br />
-                                            <input type=\"radio\" name=\"tipo2\" value=\"2\"";if($campo['tipo']==2) echo "checked"; echo "> Cliente<br /> </div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">Usuario</div>
-                                        <div id=\"columna1\"><input type='text' name='usuario' value=\"".$campo['usuario']."\" /></div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">Direcci&oacute;n</div>
-                                        <div id=\"columna1\"><input type='text' name='direccion' value=\"".$campo['direccion']."\" /></div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">Poblaci&oacute;n</div>
-                                        <td colspan='2'><input type='text' name='poblacion' value=\"".$campo['poblacion']."\" /></div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <div id=\"columna1\">Clave</div>
-                                        <td colspan='2'><input type='password' name='clave' value=\"\" /> deje vacia para mantener la anterior.</div>
-                                    </div>
-                                    <div id=\"contenidos\">
-                                        <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
+                echo "
+                            <div id=\"columna1\">id: ".$campo['id']."
+                                <input type='hidden' name='id' value='".$campo['id']."' />
+                                <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
+                                <input type='hidden' name='accion' value='".$_GET['accion']."' />
+                            </div>
+                        </div>
+                    </div>
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Nombre</div>
+                            <div id=\"columna2\"><input type='text' name='nombre' value=\"".$campo['nombre']."\"/></div>
+                            <div id=\"columna2\">
+                                Tipo de usuario<br /><br />
+                                <input type=\"radio\" name=\"tipo2\" value=\"1\"";if($campo['tipo']==1) echo "checked"; echo "> Administrador<br />
+                                <input type=\"radio\" name=\"tipo2\" value=\"3\"";if($campo['tipo']==3) echo "checked"; echo "> Repartidor<br />
+                                <input type=\"radio\" name=\"tipo2\" value=\"2\"";if($campo['tipo']==2) echo "checked"; echo "> Cliente<br />
+                            </div>
+                        </div>
+                    </div>
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Usuario</div>
+                            <div id=\"columna2\"><input type='text' name='usuario' value=\"".$campo['usuario']."\" /></div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Direcci&oacute;n</div>
+                            <div id=\"columna2\"><input type='text' name='direccion' value=\"".$campo['direccion']."\" /></div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Poblaci&oacute;n</div>
+                            <div id=\"columna2\"><input type='text' name='poblacion' value=\"".$campo['poblacion']."\" /></div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Clave</div>
+                            <div id=\"columna2\"><input type='password' name='clave' value=\"\" /> deje vacia para mantener la anterior.</div>
+                        </div>
+                    </div>
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna3\"><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
             }
         }else{
-            echo "                      <td colspan='3' class='right'>id
-                                            <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
-                                            <input type='hidden' name='accion' value='".$_GET['accion']."' />
-                                        </div>
-                                </div>
-                                <div id=\"contenidos\">
-                                    <div id=\"columna1\">Nombre</div>
-                                    <div id=\"columna1\"><input type='text' name='nombre' /> </div>
-                                    <td rowspan='3'>Tipo de usuario<br /><br /><input type=\"radio\" name=\"tipo2\" value=\"1\"> Administrador<br /> <input type=\"radio\" name=\"tipo2\" value=\"3\"> Repartidor<br /> <input type=\"radio\" name=\"tipo2\" value=\"2\"> Cliente<br /> </div>
-                                </div>
-                                <div id=\"contenidos\">
-                                    <div id=\"columna1\">Usuario</div>
-                                    <div id=\"columna1\"><input type='text' name='usuario' /></div>
-                                </div>
-                                <div id=\"contenidos\">
-                                    <div id=\"columna1\">Direcci&oacute;n</div>
-                                    <div id=\"columna1\"><input type='text' name='direccion' /></div>
-                                </div>
-                                <div id=\"contenidos\">
-                                    <div id=\"columna1\">Poblaci&oacute;n</div>
-                                    <td colspan='2'><input type='text' name='poblacion' /></div>
-                                </div>
-                                <div id=\"contenidos\">
-                                    <div id=\"columna1\">Clave</div>
-                                    <td colspan='2'><input type='password' name='clave' /></div>
-                                </div>
-                                <div id=\"contenidos\">
-                                    <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">Agregar</a>";
-        }
-        echo "                      </div>
-                                </div>
+                echo "      <div id=\"columna1\">Nombre</div>
+                            <div id=\"columna2\"><input type='text' name='nombre' \"/></div>
+                            <div id=\"columna2\">
+                                Tipo de usuario<br /><br />
+                                <input type=\"radio\" name=\"tipo2\"> Administrador<br />
+                                <input type=\"radio\" name=\"tipo2\"> Repartidor<br />
+                                <input type=\"radio\" name=\"tipo2\"> Cliente<br />
+                                <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
+                                <input type='hidden' name='accion' value='".$_GET['accion']."' />
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>";
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Usuario</div>
+                            <div id=\"columna2\"><input type='text' name='usuario' /></div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Direcci&oacute;n</div>
+                            <div id=\"columna2\"><input type='text' name='direccion' /></div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Poblaci&oacute;n</div>
+                            <div id=\"columna2\"><input type='text' name='poblacion' /></div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\">Clave</div>
+                            <div id=\"columna2\"><input type='password' name='clave' /> deje vacia para mantener la anterior.</div>
+                        </div>
+                    </div>
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna3\"><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
+        }
+            echo "          </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>";
     }
 
     public static function gestionStock($res){
