@@ -70,21 +70,21 @@ class View{
 					<img src=\"imagenes/mapa.jpg\" alt=\"mapa\" id=\"mapa\"/>
 				</p>
                 <h2>Puede contactarnos llenando el siguiente formulario.</h2>
-                <table>
-                    <form action=\"\" method=\"post\" name=\"contacto\">
-                        <tr>
-                            <td> Email </td>
-                            <td> <input name=\"eCliente\" type=\"text\"> </td>
-                        </tr>
-                        <tr>
-                            <td> Mensaje </td>
-                            <td><textarea name=\"mensaje\" rows=\"10\" cols=\"40\"></textarea></td>
-                        <tr>
-                        <tr>
-                            <td colspan=\"2\"> <a href\"\" onclick=\"contacto.submit()\" class=\"boton\">Enviar</a></td>
-                        <tr>
-                    </form>
-                </table>
+                <form action=\"\" method=\"post\" name=\"contacto\">
+                    <div id=\"contenedor\">
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\"> Email </div>
+                            <div id=\"columna2\"> <input name=\"eCliente\" type=\"text\"> </div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\"> Mensaje </div>
+                            <div id=\"columna2\"><textarea name=\"mensaje\" rows=\"10\" cols=\"40\"></textarea></div>
+                        </div>
+                        <div id=\"contenidos\">
+                            <div id=\"columna1\"><a href\"\" onclick=\"contacto.submit()\" class=\"boton\">Enviar</a></div>
+                        </div>
+                    </div>
+                </form>
 			</div>
 		</div>";
     }
