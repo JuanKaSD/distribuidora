@@ -78,8 +78,10 @@ class View{
                             <div id=\"columna1\"> Mensaje </div>
                             <div id=\"columna2\"><textarea name=\"mensaje\" rows=\"10\" cols=\"40\"></textarea></div>
                         </div>
+                    </div>
+                    <div id=\"contenedor\">
                         <div id=\"contenidos\">
-                            <div id=\"columna1\"><a href\"\" onclick=\"contacto.submit()\" class=\"boton\">Enviar</a></div>
+                            <div id=\"columna3\"><a href\"\" onclick=\"contacto.submit()\" class=\"boton\">Enviar</a></div>
                         </div>
                     </div>
                 </form>
@@ -101,8 +103,10 @@ class View{
                                 <div id=\"columna1\"> Contrase&ntilde;a </div>
                                 <div id=\"columna2\"><input name=\"password\" type=\"password\"></div>
                             </div>
+                        </div>
+                        <div id=\"contenedor\">
                             <div id=\"contenidos\">
-                                <div id=\"columna1\"> <a href\"\" onclick=\"login.submit()\" class=\"boton\">Ingresar</a></div>
+                                <div id=\"columna3\"> <a href\"\" onclick=\"login.submit()\" class=\"boton\">Ingresar</a></div>
                             </div>
                         </div>
                     </div>
@@ -115,16 +119,16 @@ class View{
         echo "
         <div id=\"content\">
             <div id=\"main\">
-                <div id=\"login\">
-                    <table>
-                        <tr>
-                            <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gUsuarios\"  class=\"boton\">Gestionar Usuarios</a></td>
-                            <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gStock\" class=\"boton\">Gestionar Stock</a></td>
-                        <tr>
-                        <tr>
-                            <td colspan='2'> <a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Listar Pedidos</a></td>
-                        <tr>
-                    </table>
+                <div id=\"contenedor\">
+                    <div id=\"contenidos\">
+                        <div id=\"columna1\"><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gUsuarios\"  class=\"boton\">Gestionar Usuarios</a></div>
+                        <div id=\"columna2\"><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gStock\" class=\"boton\">Gestionar Stock</a></div>
+                    </div>
+                </div>
+                <div id=\"contenedor\">
+                    <div id=\"contenidos\">
+                        <div id=\"columna3\"> <a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Listar Pedidos</a></div>
+                    </div>
                 </div>
             </div>
         </div>";
@@ -137,30 +141,35 @@ class View{
             foreach($res as $game){
                 if($first){
                     echo "<div id=\"content\">
-                            <div id=\"main\"><table><tr>
-                                 <td colspan=\"8\" class=\"right\"><a href=\"usuarios.php?tipo=1&accion=crear\"><h1> Agregar Nuevo Usuario <span class='icon-user-plus'></span></h1></a></td>
-                </tr>
-                <tr>";
+                            <div id=\"main\">
+                                <div id=\"contenedor\">
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\"><a href=\"usuarios.php?tipo=1&accion=crear\"><h1> Agregar Nuevo Usuario <span class='icon-user-plus'></span></h1></a></div>
+                                    </div>
+                                </div>
+                                <div id=\"contenedor\">
+                                    <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
                         if(!($field=="clave"))
-                        echo "<th>$field</th>";
+                        echo "<div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<th></th><th></th></tr>";
+                    echo "<div id=\"cabecera\"></div><div id=\"cabecera\"></div></div>";
                 }
-                echo "<tr>";
+                echo "<div id=\"contenidos\">";
                 foreach($game as $value){
                     if(!($game['clave']==$value)){
                         $id = $game['id'];
-                        echo "<td>$value</td>";
+                        echo "<div id=\"columna2\">$value</div>";
                     }
                 }
 
-                echo "  <td><a href=\"usuarios.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></td>
-                        <td><a href=\"usuarios.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></td>
-                    </tr>";
+                echo "  <div id=\"columna3\"><a href=\"usuarios.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></div>
+                        <div id=\"columna3\"><a href=\"usuarios.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></div>
+                    </div>";
             }
-            echo '</table></div>
+            echo '
+                    </div>
                 </div>';
         }
 

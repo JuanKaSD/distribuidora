@@ -68,31 +68,38 @@ nav ul li a:hover {
     display: table-row;
 }
 #columna1, #columna2, #columna3{
+    color:#000;
+    background-color: #ccc;
     display: table-cell;
     vertical-align: top;
     padding: 10px;
 }
- #columna1{
+
+#columna1{
     text-align: right;
+}
+
+#columna3{
+    text-align: center;
+}
+
+#columna2{
+    text-align: left;
 }
 
 #cabecera{
     display: table-cell;
+    text-align: center;
     color:#fff;
     background-color: #000;
     text-transform: capitalize;
 }
-#main table td{
-    color:#000;
-    background-color: #ccc;
-    padding: 8px 3px 8px 3px;
-    text-transform: capitalize;
-}
-#main table td a{
+
+#contenidos a{
     color:#000;
     text-decoration: none;
 }
-#main table td:Hover {
+#columna1:Hover, #columna2:Hover, #columna3:Hover {
     background-color: #fff;
 }
 
