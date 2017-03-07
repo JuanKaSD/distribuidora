@@ -4,14 +4,12 @@ class View{
         $html = "
         <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
         <html xmlns=\"http://www.w3.org/1999/xhtml\">
-
         <head>
             <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />
             <title>$title</title>
             <link href=\"estilos.css\" rel=\"stylesheet\" type=\"text/css\" />
             <link rel=\"stylesheet\" type=\"text/css\" href=\"fuentes.css\" media=\"all\">
         </head>
-
         <body>
             <div id=\"logo\">
                 <a href=\"index.php\"><img src=\"imagenes/img01.jpg\" alt=\"logo\" /></a>
@@ -26,7 +24,6 @@ class View{
         <div class='menu_bar'>
             <a href='#' class='bt-menu'><span class='icon-menu'></span>Menu</a>
         </div>
-
         <nav>
             <ul>
                 <li><a href='index.php'><span class='icon-home'></span>Inicio</a></li>
@@ -35,7 +32,6 @@ class View{
         if(!isset($_SESSION["user"])){
             echo "<li><a href='login.php'><span class='icon-key2'></span>Acceder</a></li>";
         }else{
-
             echo "<li><a href='gestionar.php?tipo=" . $_SESSION["tipo"] . "'><span class='icon-cog'></span>Gestionar</a></li>";
             echo "<li><a href='logout.php'><span class='icon-key2'></span>Salir</a></li>";
         }
@@ -45,30 +41,32 @@ class View{
     }
 
     public static function contenidoIndex(){
-        echo "<div id=\"content\">
-        <div id=\"main\">
-            <p>DBBR es una empresa especializada en venta de bebidas desde hace más de 10 a&ntilde;os. Nos encargamos del reparto en oficinas, locales, bares, restaurantes, hoteles, vending y SPAs.
-                <br /> Adem&aacute;s, somos proveedores de caf&eacute; Araibo, marca de la cual somos distribuidores oficiales en la Comunidad de canarias. Ofrecemos caf&eacute; en c&aacute;psula con todos sus complementos. A su vez, y para ofrecer un servicio m&aacute;s completo, tambi&eacute;n distribuimos vasos de pl&aacute;stico de un s&oacute;lo uso y vasos de pl&aacute;stico para hoteles embolsados unitariamente. Todos nuestros productos son de alta calidad, lo que nos permite garantizar un &oacute;ptimo servicio a nuestros clientes.</p>
-            <h2>Nuestras oficinas</h2>
-            <br/>
-            <div id=\"sede\">
-                <img src=\"imagenes/sede.jpg\" alt=\"sede\" /> <br />
-                <img src=\"imagenes/almacen.jpg\" alt=\"almacen\" />
+        echo "
+        <div id=\"content\">
+            <div id=\"main\">
+                <p>DBBR es una empresa especializada en venta de bebidas desde hace más de 10 a&ntilde;os. Nos encargamos del reparto en oficinas, locales, bares, restaurantes, hoteles, vending y SPAs.
+                    <br /> Adem&aacute;s, somos proveedores de caf&eacute; Araibo, marca de la cual somos distribuidores oficiales en la Comunidad de canarias. Ofrecemos caf&eacute; en c&aacute;psula con todos sus complementos. A su vez, y para ofrecer un servicio m&aacute;s completo, tambi&eacute;n distribuimos vasos de pl&aacute;stico de un s&oacute;lo uso y vasos de pl&aacute;stico para hoteles embolsados unitariamente. Todos nuestros productos son de alta calidad, lo que nos permite garantizar un &oacute;ptimo servicio a nuestros clientes.</p>
+                <h2>Nuestras oficinas</h2>
+                <br/>
+                <div id=\"sede\">
+                    <img src=\"imagenes/sede.jpg\" alt=\"sede\" /> <br />
+                    <img src=\"imagenes/almacen.jpg\" alt=\"almacen\" />
+                </div>
             </div>
-        </div>
-    </div>";
+        </div>";
     }
 
     public static function contacto(){
-        echo "<div id=\"content\">
-			<div id=\"main\">
-				<h2>DBBR. Distribuci&oacute;n de Bebidas a Bares y Restaurantes.</h2>
-				<p>Calle artenara, 33. 35017 Las Palmas De Gran Canaria. Las Palmas. </p>
+        echo "
+        <div id=\"content\">
+            <div id=\"main\">
+                <h2>DBBR. Distribuci&oacute;n de Bebidas a Bares y Restaurantes.</h2>
+                <p>Calle artenara, 33. 35017 Las Palmas De Gran Canaria. Las Palmas. </p>
 
-				<p>	[Tel&eacute;fono] 928 000 000 - 928 000 001<br/>
-					Horario: Lunes-sabado: 13:30 - 17:30 / 20:30 - 23:30<br/>
-					<img src=\"imagenes/mapa.jpg\" alt=\"mapa\" id=\"mapa\"/>
-				</p>
+                <p>	[Tel&eacute;fono] 928 000 000 - 928 000 001<br/>
+                    Horario: Lunes-sabado: 07:30 - 12:30 / 15:30 - 18:30<br/>
+                    <img src=\"imagenes/mapa.jpg\" alt=\"mapa\" id=\"mapa\"/>
+                </p>
                 <h2>Puede contactarnos llenando el siguiente formulario.</h2>
                 <form action=\"\" method=\"post\" name=\"contacto\">
                     <div id=\"contenedor\">
@@ -85,31 +83,30 @@ class View{
                         </div>
                     </div>
                 </form>
-			</div>
-		</div>";
+            </div>
+        </div>";
     }
 
     public static function login(){
         echo "
         <div id=\"content\">
             <div id=\"main\">
-                <div id=\"login\">
-                    <table>
-                        <form action=\"\" method=\"post\" name=\"login\">
-                            <tr>
-                                <td> Usuario </td>
-                                <td> <input name=\"user\" type=\"text\"> </td>
-                            </tr>
-                            <tr>
-                                <td> Contraseña </td>
-                                <td><input name=\"password\" type=\"password\"></td>
-                            <tr>
-                            <tr>
-                                <td colspan=\"2\"> <a href\"\" onclick=\"login.submit()\" class=\"boton\">Ingresar</a></td>
-                            <tr>
-                        </form>
-                    </table>
-                </div>
+                <form action=\"\" method=\"post\" name=\"login\">
+                     <div id=\"contenedor\">
+                            <div id=\"contenidos\">
+                                <div id=\"columna1\"> Usuario </div>
+                                <div id=\"columna2\"> <input name=\"user\" type=\"text\"> </div>
+                            </div>
+                            <div id=\"contenidos\">
+                                <div id=\"columna1\"> Contrase&ntilde;a </div>
+                                <div id=\"columna2\"><input name=\"password\" type=\"password\"></div>
+                            </div>
+                            <div id=\"contenidos\">
+                                <div id=\"columna1\"> <a href\"\" onclick=\"login.submit()\" class=\"boton\">Ingresar</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>";
     }
