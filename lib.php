@@ -179,8 +179,8 @@ class View{
         echo "<div id=\"content\">
                     <div id=\"main\">
                         <form action=\"usuarios.php\" method=\"post\" name=\"crear\">
-                            <table>
-                                <tr>";
+                            <div id=\"contenedor\">
+                                <div id=\"contenidos\">";
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
             foreach($res as $campo){
@@ -188,68 +188,68 @@ class View{
                                             <input type='hidden' name='id' value='".$campo['id']."' />
                                             <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
                                             <input type='hidden' name='accion' value='".$_GET['accion']."' />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nombre</td>
-                                        <td><input type='text' name='nombre' value=\"".$campo['nombre']."\"/> </td>
+                                        </div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">Nombre</div>
+                                        <div id=\"columna1\"><input type='text' name='nombre' value=\"".$campo['nombre']."\"/> </div>
                                         <td rowspan='3'>Tipo de usuario<br /><br />
                                             <input type=\"radio\" name=\"tipo2\" value=\"1\"";if($campo['tipo']==1) echo "checked"; echo "> Administrador<br />
                                             <input type=\"radio\" name=\"tipo2\" value=\"3\"";if($campo['tipo']==3) echo "checked"; echo "> Repartidor<br />
-                                            <input type=\"radio\" name=\"tipo2\" value=\"2\"";if($campo['tipo']==2) echo "checked"; echo "> Cliente<br /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Usuario</td>
-                                        <td><input type='text' name='usuario' value=\"".$campo['usuario']."\" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Direcci&oacute;n</td>
-                                        <td><input type='text' name='direccion' value=\"".$campo['direccion']."\" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Poblaci&oacute;n</td>
-                                        <td colspan='2'><input type='text' name='poblacion' value=\"".$campo['poblacion']."\" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Clave</td>
-                                        <td colspan='2'><input type='password' name='clave' value=\"\" /> deje vacia para mantener la anterior.</td>
-                                    </tr>
-                                    <tr>
+                                            <input type=\"radio\" name=\"tipo2\" value=\"2\"";if($campo['tipo']==2) echo "checked"; echo "> Cliente<br /> </div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">Usuario</div>
+                                        <div id=\"columna1\"><input type='text' name='usuario' value=\"".$campo['usuario']."\" /></div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">Direcci&oacute;n</div>
+                                        <div id=\"columna1\"><input type='text' name='direccion' value=\"".$campo['direccion']."\" /></div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">Poblaci&oacute;n</div>
+                                        <td colspan='2'><input type='text' name='poblacion' value=\"".$campo['poblacion']."\" /></div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">Clave</div>
+                                        <td colspan='2'><input type='password' name='clave' value=\"\" /> deje vacia para mantener la anterior.</div>
+                                    </div>
+                                    <div id=\"contenidos\">
                                         <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
             }
         }else{
             echo "                      <td colspan='3' class='right'>id
                                             <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
                                             <input type='hidden' name='accion' value='".$_GET['accion']."' />
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <td>Nombre</td>
-                                    <td><input type='text' name='nombre' /> </td>
-                                    <td rowspan='3'>Tipo de usuario<br /><br /><input type=\"radio\" name=\"tipo2\" value=\"1\"> Administrador<br /> <input type=\"radio\" name=\"tipo2\" value=\"3\"> Repartidor<br /> <input type=\"radio\" name=\"tipo2\" value=\"2\"> Cliente<br /> </td>
-                                </tr>
-                                <tr>
-                                    <td>Usuario</td>
-                                    <td><input type='text' name='usuario' /></td>
-                                </tr>
-                                <tr>
-                                    <td>Direcci&oacute;n</td>
-                                    <td><input type='text' name='direccion' /></td>
-                                </tr>
-                                <tr>
-                                    <td>Poblaci&oacute;n</td>
-                                    <td colspan='2'><input type='text' name='poblacion' /></td>
-                                </tr>
-                                <tr>
-                                    <td>Clave</td>
-                                    <td colspan='2'><input type='password' name='clave' /></td>
-                                </tr>
-                                <tr>
+                                        </div>
+                                </div>
+                                <div id=\"contenidos\">
+                                    <div id=\"columna1\">Nombre</div>
+                                    <div id=\"columna1\"><input type='text' name='nombre' /> </div>
+                                    <td rowspan='3'>Tipo de usuario<br /><br /><input type=\"radio\" name=\"tipo2\" value=\"1\"> Administrador<br /> <input type=\"radio\" name=\"tipo2\" value=\"3\"> Repartidor<br /> <input type=\"radio\" name=\"tipo2\" value=\"2\"> Cliente<br /> </div>
+                                </div>
+                                <div id=\"contenidos\">
+                                    <div id=\"columna1\">Usuario</div>
+                                    <div id=\"columna1\"><input type='text' name='usuario' /></div>
+                                </div>
+                                <div id=\"contenidos\">
+                                    <div id=\"columna1\">Direcci&oacute;n</div>
+                                    <div id=\"columna1\"><input type='text' name='direccion' /></div>
+                                </div>
+                                <div id=\"contenidos\">
+                                    <div id=\"columna1\">Poblaci&oacute;n</div>
+                                    <td colspan='2'><input type='text' name='poblacion' /></div>
+                                </div>
+                                <div id=\"contenidos\">
+                                    <div id=\"columna1\">Clave</div>
+                                    <td colspan='2'><input type='password' name='clave' /></div>
+                                </div>
+                                <div id=\"contenidos\">
                                     <td colspan='3'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">Agregar</a>";
         }
-        echo "                      </td>
-                                </tr>
-                            </table>
+        echo "                      </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>";
@@ -265,26 +265,26 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<table><tr>
-                                 <td colspan=\"6\" class=\"right\"><a href=\"bebidas.php?tipo=1&accion=crear\"><h1> Agregar Nueva bebida <span class='icon-glass2'></span></h1></a></td>
-                </tr><tr>";
+                    echo "<div id=\"contenedor\"><div id=\"contenidos\">
+                                 <td colspan=\"6\" class=\"right\"><a href=\"bebidas.php?tipo=1&accion=crear\"><h1> Agregar Nueva bebida <span class='icon-glass2'></span></h1></a></div>
+                </div><div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<th>$field</th>";
+                        echo "<div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<th></th><th></th></tr>";
+                    echo "<div id=\"cabecera\"></div><div id=\"cabecera\"></div></div>";
                 }
-                echo "<tr>";
+                echo "<div id=\"contenidos\">";
                 foreach($game as $value){
                     $id = $game['id'];
-                    echo "<td>$value</td>";
+                    echo "<div id=\"columna1\">$value</div>";
                 }
 
-                echo "  <td><a href=\"bebidas.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></td>
-                        <td><a href=\"bebidas.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></td>
-                    </tr>";
+                echo "  <div id=\"columna1\"><a href=\"bebidas.php?tipo=1&id=".$id."&accion=editar\"><span class='icon-pencil'></span></a></div>
+                        <div id=\"columna1\"><a href=\"bebidas.php?tipo=1&id=".$id."&accion=borrar\"><span class='icon-bin'></span></a></div>
+                    </div>";
             }
-            echo '</table></div>
+            echo '</div></div>
                 </div>';
         }
     }
@@ -293,8 +293,8 @@ class View{
         echo "<div id=\"content\">
                     <div id=\"main\">
                         <form action=\"bebidas.php\" method=\"post\" name=\"crear\">
-                            <table>
-                                <tr>";
+                            <div id=\"contenedor\">
+                                <div id=\"contenidos\">";
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
             foreach($res as $campo){
@@ -302,47 +302,47 @@ class View{
                                             <input type='hidden' name='id' value='".$campo['id']."' />
                                             <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
                                             <input type='hidden' name='accion' value='".$_GET['accion']."' />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Marca</td>
-                                        <td><input type='text' name='marca' value=\"".$campo['marca']."\"/> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stock</td>
-                                        <td><input type='text' name='stock' value=\"".$campo['stock']."\" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>P.V.P</td>
-                                        <td><input type='text' name='PVP' value=\"".$campo['PVP']."\" /></td>
-                                    </tr>
-                                    <tr>
+                                        </div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">Marca</div>
+                                        <div id=\"columna1\"><input type='text' name='marca' value=\"".$campo['marca']."\"/> </div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">Stock</div>
+                                        <div id=\"columna1\"><input type='text' name='stock' value=\"".$campo['stock']."\" /></div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">P.V.P</div>
+                                        <div id=\"columna1\"><input type='text' name='PVP' value=\"".$campo['PVP']."\" /></div>
+                                    </div>
+                                    <div id=\"contenidos\">
                                         <td colspan='2'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">actualizar</a>";
             }
         }else{
             echo "                  <td colspan='2' class='right'>id:
                                             <input type='hidden' name='tipo' value='".$_GET['tipo']."' />
                                             <input type='hidden' name='accion' value='".$_GET['accion']."' />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Marca</td>
-                                        <td><input type='text' name='marca' /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stock</td>
-                                        <td><input type='text' name='stock' /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>P.V.P</td>
-                                        <td><input type='text' name='PVP' /></td>
-                                    </tr>
-                                    <tr>
+                                        </div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">Marca</div>
+                                        <div id=\"columna1\"><input type='text' name='marca' /> </div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">Stock</div>
+                                        <div id=\"columna1\"><input type='text' name='stock' /></div>
+                                    </div>
+                                    <div id=\"contenidos\">
+                                        <div id=\"columna1\">P.V.P</div>
+                                        <div id=\"columna1\"><input type='text' name='PVP' /></div>
+                                    </div>
+                                    <div id=\"contenidos\">
                                         <td colspan='2'><a href\"\" onclick=\"crear.submit()\" class=\"boton\">agregar</a>";
         }
-        echo "                      </td>
-                                </tr>
-                            </table>
+        echo "                      </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>";
@@ -356,32 +356,32 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<table><tr>";
+                    echo "<div id=\"contenedor\"><div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<th>$field</th>";
+                        echo "<div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<th></th></tr>";
+                    echo "<div id=\"cabecera\"></div></div>";
                 }
-                echo "<tr>";
+                echo "<div id=\"contenidos\">";
                 foreach($game as $value){
                     $id = $game['id'];
                     if($game['horacreacion'] === $value || $game['horaasignacion'] === $value || $game['horareparto'] === $value || $game['horaentrega'] === $value) {
                         if($value == null || $value == 0 ){
-                            echo "<td></td>";
+                            echo "<div id=\"columna1\"></div>";
                         }else{
-                            echo "<td>".date("d-m-Y H:i",$value)."</td>";
+                            echo "<div id=\"columna1\">".date("d-m-Y H:i",$value)."</div>";
                         }
                     }else{
-                        echo "<td>$value</td>";
+                        echo "<div id=\"columna1\">$value</div>";
                     }
 
                 }
 
-                echo "  <td><a href=\"pedidos.php?tipo=1&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></td>
-                    </tr>";
+                echo "  <div id=\"columna1\"><a href=\"pedidos.php?tipo=1&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></div>
+                    </div>";
             }
-            echo '</table></div>
+            echo '</div></div>
                 </div>';
         }
     }
@@ -394,32 +394,32 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<table><tr>";
+                    echo "<div id=\"contenedor\"><div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<th>$field</th>";
+                        echo "<div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<th></th></tr>";
+                    echo "<div id=\"cabecera\"></div></div>";
                 }
-                echo "<tr>";
+                echo "<div id=\"contenidos\">";
                 foreach($game as $value){
                     $id = $game['id'];
                     if($game['horacreacion'] === $value || $game['horaasignacion'] === $value || $game['horareparto'] === $value || $game['horaentrega'] === $value) {
                         if($value == null || $value == 0 ){
-                            echo "<td></td>";
+                            echo "<div id=\"columna1\"></div>";
                         }else{
-                            echo "<td>".date("d-m-Y H:i",$value)."</td>";
+                            echo "<div id=\"columna1\">".date("d-m-Y H:i",$value)."</div>";
                         }
                     }else{
-                        echo "<td>$value</td>";
+                        echo "<div id=\"columna1\">$value</div>";
                     }
 
                 }
 
-                echo "  <td><a href=\"pedidos.php?tipo=2&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></td>
-                    </tr>";
+                echo "  <div id=\"columna1\"><a href=\"pedidos.php?tipo=2&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></div>
+                    </div>";
             }
-            echo '</table></div>
+            echo '</div></div>
                 </div>';
         }
     }
@@ -434,42 +434,42 @@ class View{
             foreach($res as $game){
                 if($first){
                     echo "<form action=\"clientes.php\" method=\"post\" name=\"crear\">
-                            <table><tr>
-                                 <td colspan=\"5\" class=\"right\"><a onclick=\"crear.submit()\"><h1> Hacer Pedido<span class='icon-cart'></span></h1></a></td>
-                </tr>
-                <tr>
-                                 <td colspan=\"2\" class=\"right\">Poblac&oacute;n de entrega: <input type='text' name='poblacion' /></td>
-                                 <td colspan=\"3\" class=\"right\">Direcc&oacute;n de entrega: <input type='text' name='direccion' /></td>
-                </tr>
-                <tr>";
+                            <div id=\"contenedor\"><div id=\"contenidos\">
+                                 <td colspan=\"5\" class=\"right\"><a onclick=\"crear.submit()\"><h1> Hacer Pedido<span class='icon-cart'></span></h1></a></div>
+                </div>
+                <div id=\"contenidos\">
+                                 <td colspan=\"2\" class=\"right\">Poblac&oacute;n de entrega: <input type='text' name='poblacion' /></div>
+                                 <td colspan=\"3\" class=\"right\">Direcc&oacute;n de entrega: <input type='text' name='direccion' /></div>
+                </div>
+                <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<th>$field</th>";
+                        echo "<div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<th>Cantidad</th></tr>";
+                    echo "<div id=\"cabecera\">Cantidad</div></div>";
                 }
-                echo "<tr>";
+                echo "<div id=\"contenidos\">";
                 foreach($game as $value){
-                    echo "<td>$value</td>";
+                    echo "<div id=\"columna1\">$value</div>";
                 }
                 $id = $game['id'];
                 $PVP = $game['PVP'];
 
-                echo "    <td class=\"right\"><input type='text' name='cantidad_$id' size='5'/></td>
-                    </tr>";
+                echo "    <td class=\"right\"><input type='text' name='cantidad_$id' size='5'/></div>
+                    </div>";
             }
-            echo '</table></form></div>
+            echo '</div></form></div>
                 </div>';
         }else{
             echo "<div id=\"content\">
                     <div id=\"main\">
                         <div id=\"login\">
-                            <table>
-                                <tr>
-                                    <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Ver Pedidos</a></td>
-                                    <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gProductos\" class=\"boton\">Hacer pedido nuevo</a></td>
-                                </tr>
-                            </table>
+                            <div id=\"contenedor\">
+                                <div id=\"contenidos\">
+                                    <div id=\"columna1\"><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gPedidos\" class=\"boton\">Ver Pedidos</a></div>
+                                    <div id=\"columna1\"><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gProductos\" class=\"boton\">Hacer pedido nuevo</a></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>";
@@ -485,21 +485,21 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<table><tr>";
+                    echo "<div id=\"contenedor\"><div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<th>$field</th>";
+                        echo "<div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "</tr>";
+                    echo "</div>";
                 }
-                echo "<tr>";
+                echo "<div id=\"contenidos\">";
                 foreach($game as $value){
-                    echo "<td>$value</td>";
+                    echo "<div id=\"columna1\">$value</div>";
                 }
                 $total+=$game['PVP']*$game['unidades'];
 
             }
-            echo "<tr><td colspan='4' class='right'> Total: $total&euro;</td></tr></table></div>
+            echo "<div id=\"contenidos\"><td colspan='4' class='right'> Total: $total&euro;</div></div></div></div>
                 </div>";
         }
     }
@@ -514,35 +514,35 @@ class View{
             foreach($res as $game){
                 if($first){
                     echo "<form action=\"repartidores.php\" method=\"post\" name=\"crear\">
-                            <table><tr>
-                                 <td colspan=\"5\" class=\"right\"><a onclick=\"crear.submit()\"><h1> Asignarse Pedido<span class='icon-cart'></span></h1></a></td>
-                </tr>
-                <tr>";
+                            <div id=\"contenedor\"><div id=\"contenidos\">
+                                 <td colspan=\"5\" class=\"right\"><a onclick=\"crear.submit()\"><h1> Asignarse Pedido<span class='icon-cart'></span></h1></a></div>
+                </div>
+                <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<th>$field</th>";
+                        echo "<div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<th></th></tr>";
+                    echo "<div id=\"cabecera\"></div></div>";
                 }
-                echo "<tr>";
+                echo "<div id=\"contenidos\">";
                 foreach($game as $value){
-                    echo "<td>$value</td>";
+                    echo "<div id=\"columna1\">$value</div>";
                 }
                 $id = $game['id'];
-                echo "<td class=\"right\"><input type='checkbox' name='$id' value='$id'/></td></tr>";
+                echo "<td class=\"right\"><input type='checkbox' name='$id' value='$id'/></div></div>";
             }
-            echo '</table></form></div>
+            echo '</div></form></div>
                 </div>';
         }else{
             echo "<div id=\"content\">
                     <div id=\"main\">
                         <div id=\"login\">
-                            <table>
-                                <tr>
-                                    <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gMPedidos\" class=\"boton\">Modificar Pedidos</a></td>
-                                    <td><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gAPedidos\" class=\"boton\">Asignarse pedido nuevo</a></td>
-                                </tr>
-                            </table>
+                            <div id=\"contenedor\">
+                                <div id=\"contenidos\">
+                                    <div id=\"columna1\"><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gMPedidos\" class=\"boton\">Modificar Pedidos</a></div>
+                                    <div id=\"columna1\"><a href=\"gestionar.php?tipo=".$_SESSION["tipo"]."&pag=gAPedidos\" class=\"boton\">Asignarse pedido nuevo</a></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>";
@@ -557,26 +557,26 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<table><tr>";
+                    echo "<div id=\"contenedor\"><div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<th>$field</th>";
+                        echo "<div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<th>Repartir</th><th>Entregar</th></tr>";
+                    echo "<div id=\"cabecera\">Repartir</div><div id=\"cabecera\">Entregar</div></div>";
                 }
-                echo "<tr>";
+                echo "<div id=\"contenidos\">";
                 foreach($game as $value){
 
-                        echo "<td>$value</td>";
+                        echo "<div id=\"columna1\">$value</div>";
 
                 }
                 $id = $game['id'];
 
-                echo "  <td><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=repartir\"><span class='icon-truck big'></span></td>
-                        <td><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=entregar\"><span class='icon-stopwatch big'></span></td>
-                    </tr>";
+                echo "  <div id=\"columna1\"><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=repartir\"><span class='icon-truck big'></span></div>
+                        <div id=\"columna1\"><a href=\"repartidores.php?tipo=".$_SESSION["tipo"]."&id=$id&pagina=entregar\"><span class='icon-stopwatch big'></span></div>
+                    </div>";
             }
-            echo '</table></div>
+            echo '</div></div>
                 </div>';
         }
     }
