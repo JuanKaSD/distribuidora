@@ -396,32 +396,37 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<div id=\"contenedor\"><div id=\"contenidos\">";
+                    echo "<div id=\"contenedor\">
+                            <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<div id=\"cabecera\">$field</div>";
+                        echo "  <div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "<div id=\"cabecera\"></div></div>";
+                    echo "      <div id=\"cabecera\"></div>
+                            </div>";
                 }
-                echo "<div id=\"contenidos\">";
+                echo "      <div id=\"contenidos\">";
                 foreach($game as $value){
                     $id = $game['id'];
                     if($game['horacreacion'] === $value || $game['horaasignacion'] === $value || $game['horareparto'] === $value || $game['horaentrega'] === $value) {
                         if($value == null || $value == 0 ){
-                            echo "<div id=\"columna1\"></div>";
+                            echo "
+                                <div id=\"columna2\"></div>";
                         }else{
-                            echo "<div id=\"columna1\">".date("d-m-Y H:i",$value)."</div>";
+                            echo "
+                                <div id=\"columna2\">".date("d-m-Y H:i",$value)."</div>";
                         }
                     }else{
-                        echo "<div id=\"columna1\">$value</div>";
+                        echo "<div id=\"columna2\">$value</div>";
                     }
 
                 }
 
-                echo "  <div id=\"columna1\"><a href=\"pedidos.php?tipo=1&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></div>
-                    </div>";
+            echo "              <div id=\"columna3\"><a href=\"pedidos.php?tipo=1&id=".$id."&accion=ver\"><span class='icon-eye'></span></a></div>
+                            </div>";
             }
-            echo '</div></div>
+            echo '      </div>
+                    </div>
                 </div>';
         }
     }
@@ -525,21 +530,29 @@ class View{
             $first=true;
             foreach($res as $game){
                 if($first){
-                    echo "<div id=\"contenedor\"><div id=\"contenidos\">";
+                    echo "<div id=\"contenedor\">
+                            <div id=\"contenidos\">";
                     foreach($game as $field=>$value){
-                        echo "<div id=\"cabecera\">$field</div>";
+                        echo "  <div id=\"cabecera\">$field</div>";
                     }
                     $first = false;
-                    echo "</div>";
+                    echo "  </div>";
                 }
-                echo "<div id=\"contenidos\">";
+                echo "      <div id=\"contenidos\">";
                 foreach($game as $value){
-                    echo "<div id=\"columna1\">$value</div>";
+                    echo "      <div id=\"columna1\">$value</div>";
                 }
                 $total+=$game['PVP']*$game['unidades'];
+                echo "      </div>";
 
             }
-            echo "<div id=\"contenidos\"><td colspan='4' class='right'> Total: $total&euro;</div></div></div></div>
+            echo "      </div>
+                        <div id=\"contenedor\">
+                            <div id=\"contenidos\">
+                                <div id=\"columna3\"> Total: $total&euro;</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>";
         }
     }
